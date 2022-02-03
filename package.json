@@ -39,7 +39,6 @@
     "build-esm": "rollup --environment FORMAT:esm,MIN:false -c",
     "build-esm-min": "rollup --environment FORMAT:esm,MIN:true -c"
   },
-  "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-buble": "^0.21.3",
     "@rollup/plugin-json": "^4.1.0",
