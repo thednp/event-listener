@@ -1,5 +1,5 @@
 /*!
-* EventListener v0.0.1alpha1 (https://github.com/thednp/event-listener.js)
+* EventListener v0.0.1 (https://github.com/thednp/event-listener.js)
 * Modern event listener for efficient applications.
 * Copyright 2022 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener.js/blob/master/LICENSE)
