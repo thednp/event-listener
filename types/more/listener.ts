@@ -1,0 +1,1 @@
+export {default as EventListener} from '../../src/EventListener'

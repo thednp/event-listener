@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "declaration": true,
+    "resolveJsonModule": true,
+    "emitDeclarationOnly": true,
+    "strict": true,
+    "allowJs": true,
+    "checkJs": true,
+    "rootDir": "../",
+    "outFile": "types/event-listener.d.ts", // comment after generate
+    "outDir": "types"
+  },
+  "files": [
+    "types/index.d.ts",
+    // "types/bsn.d.ts", // comment to generate, delete file
+    "types/more/listener.ts",
+  ]
+}
