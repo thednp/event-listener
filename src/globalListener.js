@@ -1,11 +1,4 @@
-/*!
-* EventListener v0.0.3 (https://github.com/thednp/event-listener.js)
-* Modern event listener for efficient applications.
-* Copyright 2022 © thednp
-* Licensed under MIT (https://github.com/thednp/event-listener.js/blob/master/LICENSE)
-*/
-/** @type {Record<string, any>} */
-const EventRegistry = {};
+import EventRegistry from './registry';
 
 /**
  * The global event listener.
@@ -14,7 +7,7 @@ const EventRegistry = {};
  * @param {Event} e
  * @returns {void}
  */
-function globalListener(e) {
+export default function globalListener(e) {
   const that = this;
   const { type } = e;
   const oneEvMap = EventRegistry[type] ? [...EventRegistry[type]] : [];
@@ -43,7 +36,7 @@ function globalListener(e) {
  * @param {EventListenerObject['handleEvent']} listener
  * @param {AddEventListenerOptions=} options
  */
-const addListener = (element, eventType, listener, options) => {
+export const addListener = (element, eventType, listener, options) => {
   // get element listeners first
   if (!EventRegistry[eventType]) {
     EventRegistry[eventType] = new Map();
@@ -78,7 +71,7 @@ const addListener = (element, eventType, listener, options) => {
  * @param {EventListenerObject['handleEvent']} listener
  * @param {AddEventListenerOptions=} options
  */
-const removeListener = (element, eventType, listener, options) => {
+export const removeListener = (element, eventType, listener, options) => {
   // get listener first
   const oneEventMap = EventRegistry[eventType];
   const oneElementMap = oneEventMap && oneEventMap.get(element);
@@ -98,18 +91,3 @@ const removeListener = (element, eventType, listener, options) => {
     element.removeEventListener(eventType, globalListener, eventOptions);
   }
 };
-
-/**
- * Advanced event listener based on subscribe / publish pattern.
- * @see https://www.patterns.dev/posts/classic-design-patterns/#observerpatternjavascript
- * @see https://gist.github.com/shystruk/d16c0ee7ac7d194da9644e5d740c8338#file-subpub-js
- * @see https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8
- */
-const EventListener = {
-  on: addListener,
-  off: removeListener,
-  globalListener,
-  registry: EventRegistry,
-};
-
-export { EventListener as default };

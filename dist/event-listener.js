@@ -1,5 +1,5 @@
 /*!
-* EventListener v0.0.2 (https://github.com/thednp/event-listener.js)
+* EventListener v0.0.3 (https://github.com/thednp/event-listener.js)
 * Modern event listener for efficient applications.
 * Copyright 2022 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener.js/blob/master/LICENSE)
@@ -47,7 +47,7 @@
    * @param {Element | HTMLElement | Window | Document} element
    * @param {string} eventType
    * @param {EventListenerObject['handleEvent']} listener
-   * @param {AddEventListenerOptions} options
+   * @param {AddEventListenerOptions=} options
    */
   const addListener = (element, eventType, listener, options) => {
     // get element listeners first
@@ -82,20 +82,21 @@
    * @param {Element | HTMLElement | Window | Document} element
    * @param {string} eventType
    * @param {EventListenerObject['handleEvent']} listener
-   * @param {AddEventListenerOptions} options
+   * @param {AddEventListenerOptions=} options
    */
   const removeListener = (element, eventType, listener, options) => {
     // get listener first
     const oneEventMap = EventRegistry[eventType];
     const oneElementMap = oneEventMap && oneEventMap.get(element);
+    const savedOptions = oneElementMap && oneElementMap.get(listener);
     // also recover initial options
-    const { options: eventOptions } = oneElementMap
-      ? oneElementMap.get(listener)
+    const { options: eventOptions } = savedOptions !== undefined
+      ? savedOptions
       : { options };
 
     // unsubscribe second, remove from registry
     if (oneElementMap && oneElementMap.has(listener)) oneElementMap.delete(listener);
-    if (!oneElementMap || !oneElementMap.size) oneEventMap.delete(element);
+    if (oneEventMap && (!oneElementMap || !oneElementMap.size)) oneEventMap.delete(element);
     if (!oneEventMap || !oneEventMap.size) delete EventRegistry[eventType];
 
     // remove listener last

@@ -1,5 +1,5 @@
 /*!
-* EventListener v0.0.2 (https://github.com/thednp/event-listener.js)
+* EventListener v0.0.3 (https://github.com/thednp/event-listener.js)
 * Modern event listener for efficient applications.
 * Copyright 2022 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener.js/blob/master/LICENSE)
@@ -49,7 +49,7 @@
    * @param {Element | HTMLElement | Window | Document} element
    * @param {string} eventType
    * @param {EventListenerObject['handleEvent']} listener
-   * @param {AddEventListenerOptions} options
+   * @param {AddEventListenerOptions=} options
    */
   var addListener = function (element, eventType, listener, options) {
     // get element listeners first
@@ -84,21 +84,22 @@
    * @param {Element | HTMLElement | Window | Document} element
    * @param {string} eventType
    * @param {EventListenerObject['handleEvent']} listener
-   * @param {AddEventListenerOptions} options
+   * @param {AddEventListenerOptions=} options
    */
   var removeListener = function (element, eventType, listener, options) {
     // get listener first
     var oneEventMap = EventRegistry[eventType];
     var oneElementMap = oneEventMap && oneEventMap.get(element);
+    var savedOptions = oneElementMap && oneElementMap.get(listener);
     // also recover initial options
-    var ref = oneElementMap
-      ? oneElementMap.get(listener)
+    var ref = savedOptions !== undefined
+      ? savedOptions
       : { options: options };
     var eventOptions = ref.options;
 
     // unsubscribe second, remove from registry
     if (oneElementMap && oneElementMap.has(listener)) { oneElementMap.delete(listener); }
-    if (!oneElementMap || !oneElementMap.size) { oneEventMap.delete(element); }
+    if (oneEventMap && (!oneElementMap || !oneElementMap.size)) { oneEventMap.delete(element); }
     if (!oneEventMap || !oneEventMap.size) { delete EventRegistry[eventType]; }
 
     // remove listener last

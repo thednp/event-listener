@@ -1,13 +1,14 @@
 {
   "name": "event-listener.js",
   "author": "thednp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Modern event listener for efficient applications.",
   "license": "MIT",
   "homepage": "https://github.com/thednp/event-listener.js",
   "main": "dist/event-listener.min.js",
   "module": "dist/event-listener.esm.js",
   "jsnext": "src/index.js",
+  "types": "types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thednp/event-listener.js.git"
