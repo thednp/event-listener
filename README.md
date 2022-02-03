@@ -8,6 +8,15 @@ Modern event listener for efficient applications based on the [subscribe-publish
 [![jsDeliver](https://data.jsdelivr.com/v1/package/npm/event-listener.js/badge)](https://www.jsdelivr.com/package/npm/event-listener.js)
 [![CDNJS](https://img.shields.io/cdnjs/v/event-listener.js.svg?style=flat-square)](https://cdnjs.com/libraries/event-listener.js)
 
+
+# Package Features
+* **EventListener** is ES6+ sourced with TypeScript definitions;
+* **EventListener** comes with ES6, ES5 and ESM packaging, all in `/dist` folder;
+* **EventListener** makes use of the native [Map](https://caniuse.com/mdn-javascript_builtins_map) to subscribe/register or unsubscribe/remove listeners, which is perfect since we need to make sure the exact listeners are added/removed;
+* **EventListener** allows you to register multiple listeners for the same target, even of the same type, but always uses a single `globalListener` to call them all at once when event is triggered;
+* **EventListener** "should" be able to manage event options, especially `once`, meaning that when the option is `true`, the listener is automatically un-subscribed and detached from target;
+* **EventListener** will unsubscribe and detach listeners with the same options used when attached, which means you can "lazy" remove listeners on the fly.
+
 # NPM
 ```
 npm install event-listener.js
@@ -18,16 +27,7 @@ npm install event-listener.js
 <script src="https://cdn.jsdelivr.net/npm/event-listener.js/dist/event-listener.min.js"></script>
 ```
 
-# Package Features
-* **EventListener** is ES6+ sourced with TypeScript definitions;
-* **EventListener** comes with ES6, ES5 and ESM packaging, all in `/dist` folder;
-* **EventListener** makes use of the native [Map](https://caniuse.com/mdn-javascript_builtins_map) to subscribe/register or unsubscribe/remove listeners, which is perfect since we need to make sure the exact listeners are added/removed;
-* **EventListener** allows you to register multiple listeners for the same target, even of the same type, but always uses a single `globalListener` to call them all at once when event is triggered;
-* **EventListener** "should" be able to manage event options, especially `once`, meaning that when the option is `true`, the listener is automatically un-subscribed and detached from target;
-* **EventListener** will unsubscribe and detach listeners with the same options used when attached, which means you can "lazy" remove listeners on the fly.
-
 # Use
-
 ```js
 import EventListener from 'event-listener.js';
 
@@ -79,7 +79,7 @@ if (documentClickListeners && documentClickListeners.has(handleMyClick)) {
 // get listener options
 const myListenerOptions = documentClickListeners && documentClickListeners.get(handleMyClick));
 
-// returns { once: true }
+// returns false, which is the `useCapture` option value added for `handleMyClick`
 ```
 
 For advanced use, check out the [demo](./demo/index.html), showcasing the **EventListener** usage with a demo component.
