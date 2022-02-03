@@ -1,1 +1,1 @@
-export {default as EventListener} from '../../src/EventListener'
+export {default as EventListener} from '../../src/event-listener'

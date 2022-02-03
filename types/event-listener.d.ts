@@ -1,4 +1,4 @@
-declare module "event-listener.js/src/EventListener" {
+declare module "event-listener.js/src/event-listener" {
     export default EventListener;
     namespace EventListener {
         export { addListener as on };
@@ -38,5 +38,5 @@ declare module "event-listener.js/src/EventListener" {
     const EventRegistry: Record<string, any>;
 }
 declare module "event-listener.js/types/more/listener" {
-    export { default as EventListener } from "event-listener.js/src/EventListener";
+    export { default as EventListener } from "event-listener.js/src/event-listener";
 }
