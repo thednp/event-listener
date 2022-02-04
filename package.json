@@ -17,6 +17,9 @@
     "url": "https://github.com/thednp/event-listener.js/issues"
   },
   "keywords": [
+    "addEventListener",
+    "removeEventListener",
+    "subscribe-publish event",
     "javascript events",
     "event listener",
     "javascript"
