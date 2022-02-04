@@ -42,7 +42,7 @@ function handleMyClick(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
   }
-  console.log('document is now loaded');
+  console.log('do something else instead');
 }
 EventListener.on(document, 'click', handleMyClick, false);
 
@@ -67,7 +67,7 @@ Map(1) {
     }
   ],
   size: 1, // size of the Map
-  prototype: Proto
+  prototype: Prototype
 }
 
 // check if element has listener
