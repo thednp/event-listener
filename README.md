@@ -6,7 +6,6 @@ Modern event listener for efficient applications based on the [subscribe-publish
 [![NPM Version](https://img.shields.io/npm/v/event-listener.js.svg?style=flat-square)](https://www.npmjs.com/package/event-listener.js)
 [![NPM Downloads](https://img.shields.io/npm/dm/event-listener.js.svg?style=flat-square)](http://npm-stat.com/charts.html?package=event-listener.js)
 [![jsDeliver](https://data.jsdelivr.com/v1/package/npm/event-listener.js/badge)](https://www.jsdelivr.com/package/npm/event-listener.js)
-[![CDNJS](https://img.shields.io/cdnjs/v/event-listener.js.svg?style=flat-square)](https://cdnjs.com/libraries/event-listener.js)
 
 
 # Package Features
