@@ -8,7 +8,7 @@ Modern event listener for efficient applications based on the [subscribe-publish
 [![jsDeliver](https://data.jsdelivr.com/v1/package/npm/event-listener.js/badge)](https://www.jsdelivr.com/package/npm/event-listener.js)
 
 
-# Package Features
+# Features
 * **EventListener** is ES6+ sourced with TypeScript definitions;
 * **EventListener** comes with ES6, ES5 and ESM packaging, all in `/dist` folder;
 * **EventListener** makes use of the native [Map](https://caniuse.com/mdn-javascript_builtins_map) to subscribe/register or unsubscribe/remove listeners, which is perfect since we need to make sure the exact listeners are added/removed;
