@@ -7,7 +7,7 @@ EventListener.on(btn, 'click', function removeFirstComponent(e) {
   const instanceMap = [...compMap];
   if (compMap.size) instanceMap[0][1].dispose();
 
-  btn.innerText = compMap.size ? (compMap.size + " Instances") : "No Instances";
+  btn.innerText = compMap.size ? (compMap.size + " Instances") : "No Instance";
   
   if (!compMap.size) {
     EventListener.off(btn, 'click', removeFirstComponent, false);

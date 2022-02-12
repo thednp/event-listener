@@ -11,7 +11,7 @@ Modern event listener for efficient applications based on the [subscribe-publish
 # Features
 * **EventListener** is ES6+ sourced with TypeScript definitions;
 * **EventListener** comes with ES6, ES5 and ESM packaging, all in `/dist` folder;
-* **EventListener** makes use of the native [Map](https://caniuse.com/mdn-javascript_builtins_map) to subscribe/register or unsubscribe/remove listeners, which is perfect since we need to make sure the exact listeners are added/removed;
+* **EventListener** makes use of the native [Map](https://caniuse.com/mdn-javascript_builtins_map) to subscribe/register or unsubscribe/remove listeners, which is perfect since we need to make sure the exact listeners are added/removed; this completely invalidates the need to [deconstruct function objects](https://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-deep-clone-an-object-in-javascript) for comparison's sake to make sure event listeners are properly handled;
 * **EventListener** allows you to register multiple listeners for the same target, even of the same type, but always uses a single `globalListener` to call them all at once when event is triggered;
 * **EventListener** "should" be able to manage event options, especially `once`, meaning that when the option is `true`, the listener is automatically un-subscribed and detached from target;
 * **EventListener** will unsubscribe and detach listeners with the same options used when attached, which means you can "lazy" remove listeners on the fly.
@@ -81,7 +81,16 @@ const myListenerOptions = documentClickListeners && documentClickListeners.get(h
 // returns false, which is the `useCapture` option value added for `handleMyClick`
 ```
 
-For advanced use, check out the [demo](./demo/index.html), showcasing the **EventListener** usage with a demo component.
+# Advanced Use
+You can also make use of "tree shaking" to import only the module you want, for instance:
+
+```js
+import { addListener } from 'event-listener.js';
+
+addListener(document, handleMyClick, true);
+```
+
+For more advanced use, check out the [demo](./demo/index.html), showcasing the **EventListener** usage with a demo component.
 
 # License
 **EventListener** is released under the [MIT License](https://github.com/thednp/event-listener.js/blob/main/LICENSE).

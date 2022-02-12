@@ -1,5 +1,5 @@
 /*!
-* EventListener v0.0.4 (https://github.com/thednp/event-listener.js)
+* EventListener v0.0.5 (https://github.com/thednp/event-listener.js)
 * Modern event listener for efficient applications.
 * Copyright 2022 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener.js/blob/master/LICENSE)
@@ -83,6 +83,7 @@ const removeListener = (element, eventType, listener, options) => {
   const oneEventMap = EventRegistry[eventType];
   const oneElementMap = oneEventMap && oneEventMap.get(element);
   const savedOptions = oneElementMap && oneElementMap.get(listener);
+
   // also recover initial options
   const { options: eventOptions } = savedOptions !== undefined
     ? savedOptions
@@ -112,4 +113,4 @@ const EventListener = {
   registry: EventRegistry,
 };
 
-export { EventListener as default };
+export { EventRegistry, addListener, EventListener as default, globalListener, removeListener };

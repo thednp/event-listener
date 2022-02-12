@@ -1,14 +1,14 @@
 /*!
-* EventListener v0.0.4 (https://github.com/thednp/event-listener.js)
+* EventListener v0.0.5 (https://github.com/thednp/event-listener.js)
 * Modern event listener for efficient applications.
 * Copyright 2022 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener.js/blob/master/LICENSE)
 */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.EventListener = factory());
-})(this, (function () { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.EventListener = {}));
+})(this, (function (exports) { 'use strict';
 
   /** @type {Record<string, any>} */
   const EventRegistry = {};
@@ -89,6 +89,7 @@
     const oneEventMap = EventRegistry[eventType];
     const oneElementMap = oneEventMap && oneEventMap.get(element);
     const savedOptions = oneElementMap && oneElementMap.get(listener);
+
     // also recover initial options
     const { options: eventOptions } = savedOptions !== undefined
       ? savedOptions
@@ -118,6 +119,12 @@
     registry: EventRegistry,
   };
 
-  return EventListener;
+  exports.EventRegistry = EventRegistry;
+  exports.addListener = addListener;
+  exports["default"] = EventListener;
+  exports.globalListener = globalListener;
+  exports.removeListener = removeListener;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
