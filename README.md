@@ -62,12 +62,12 @@ const documentClickListeners = EventListener.registry['click'].get(document);
 Map(1) {
   Entries(Array) => [
     0: {
-      key: ƒ() // listener
+      key: handleMyClick() // listener
       value: false // listener options
     }
   ],
   size: 1, // size of the Map
-  prototype: Prototype
+  prototype: [Prototype(Object)]
 }
 
 // check if element has listener
@@ -86,6 +86,14 @@ You can also make use of "tree shaking" to import only the module you want, for 
 
 ```js
 import { addListener } from 'event-listener.js';
+
+addListener(document, handleMyClick, true);
+```
+
+Same applies to:
+
+```js
+import { addListener } from 'event-listener.js/src/event-listener';
 
 addListener(document, handleMyClick, true);
 ```
