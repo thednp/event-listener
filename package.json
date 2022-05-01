@@ -30,6 +30,10 @@
     "src",
     "types"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "test": "cypress run",
     "cypress": "npx cypress open",
