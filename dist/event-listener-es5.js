@@ -27,6 +27,7 @@
     [].concat( EventRegistry[type] ).forEach(function (elementsMap) {
       var element = elementsMap[0];
       var listenersMap = elementsMap[1];
+      /* istanbul ignore else */
       if ([target, that].some(function (el) { return element === el; })) {
         [].concat( listenersMap ).forEach(function (listenerMap) {
           var listener = listenerMap[0];
@@ -95,6 +96,7 @@
     if (!oneEventMap || !oneEventMap.size) { delete EventRegistry[eventType]; }
 
     // remove listener last
+    /* istanbul ignore else */
     if (!oneElementMap || !oneElementMap.size) {
       element.removeEventListener(eventType, globalListener, eventOptions);
     }
