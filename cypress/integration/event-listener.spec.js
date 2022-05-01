@@ -78,15 +78,16 @@ describe('EventListener Testing', () => {
           EventListener.on(win, 'scroll', scrollListener);
         }
       })
+      .wait(17)
+      .get('b').then((b) => {
+        if (b[0]) {
+          EventListener.off(b[0], 'click', clickListener);
+        }
+      })
       .get('@body').then((body) => {
         if (body[0]) {
           expect(EventListener.registry.click).to.be.instanceOf(Map);
           EventListener.off(body[0], 'click', clickListener);
-        }
-      })
-      .get('b').then((b) => {
-        if (b[0]) {
-          EventListener.off(b[0], 'click', clickListener);
         }
       })
       .get('@win').then((win) => {

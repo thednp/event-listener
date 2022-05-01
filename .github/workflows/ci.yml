@@ -25,12 +25,3 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload coverage report on Node v${{ matrix.node }} to codecov.io...
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
-          files: ./coverage/lcov.info
-          flags: electron
-          name: codecov-client-electron
-          fail_ci_if_error: true
-          verbose: true
