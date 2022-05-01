@@ -1,14 +1,25 @@
-declare module "event-listener.js/src/event-listener" {
+declare module "event-listener/src/event-listener" {
     /**
      * The global event listener.
      *
-     * @this {Element | HTMLElement | Window | Document}
-     * @param {Event} e
-     * @returns {void}
+     * @type {EventListener}
+     * @this {EventTarget}
      */
-    export function globalListener(e: Event): void;
-    export function addListener(element: Element | HTMLElement | Window | Document, eventType: string, listener: EventListenerObject['handleEvent'], options?: AddEventListenerOptions | undefined): void;
-    export function removeListener(element: Element | HTMLElement | Window | Document, eventType: string, listener: EventListenerObject['handleEvent'], options?: AddEventListenerOptions | undefined): void;
+    export function globalListener(this: EventTarget, e: Event): void;
+    /**
+     * Register a new listener with its options and attach the `globalListener`
+     * to the target if this is the first listener.
+     *
+     * @type {Listener.ListenerAction<EventTarget>}
+     */
+    export const addListener: Listener.ListenerAction<EventTarget>;
+    /**
+     * Remove a listener from registry and detach the `globalListener`
+     * if no listeners are found in the registry.
+     *
+     * @type {Listener.ListenerAction<EventTarget>}
+     */
+    export const removeListener: Listener.ListenerAction<EventTarget>;
     export default EventListener;
     /** @type {Record<string, any>} */
     export const EventRegistry: Record<string, any>;
@@ -19,6 +30,6 @@ declare module "event-listener.js/src/event-listener" {
         export { EventRegistry as registry };
     }
 }
-declare module "event-listener.js/types/more/listener" {
-    export { default as EventListener, EventRegistry, globalListener, addListener, removeListener } from "event-listener.js/src/event-listener";
+declare module "event-listener/types/more/listener" {
+    export { default as EventListener, EventRegistry, globalListener, addListener, removeListener } from "event-listener/src/event-listener";
 }

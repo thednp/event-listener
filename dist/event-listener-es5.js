@@ -1,14 +1,14 @@
 /*!
-* EventListener v0.0.5 (https://github.com/thednp/event-listener.js)
-* Modern event listener for efficient applications.
+* EventListener v1.0.0 (https://github.com/thednp/event-listener.js)
+* Modern event listener for efficient applications based on subscribe-publish pattern.
 * Copyright 2022 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener.js/blob/master/LICENSE)
 */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.EventListener = {}));
-})(this, (function (exports) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.EventListener = factory());
+})(this, (function () { 'use strict';
 
   /** @type {Record<string, any>} */
   var EventRegistry = {};
@@ -16,16 +16,14 @@
   /**
    * The global event listener.
    *
-   * @this {Element | HTMLElement | Window | Document}
-   * @param {Event} e
-   * @returns {void}
+   * @type {EventListener}
+   * @this {EventTarget}
    */
   function globalListener(e) {
     var that = this;
     var type = e.type;
-    var oneEvMap = EventRegistry[type] ? [].concat( EventRegistry[type] ) : [];
 
-    oneEvMap.forEach(function (elementsMap) {
+    [].concat( EventRegistry[type] ).forEach(function (elementsMap) {
       var element = elementsMap[0];
       var listenersMap = elementsMap[1];
       [].concat( listenersMap ).forEach(function (listenerMap) {
@@ -46,10 +44,7 @@
    * Register a new listener with its options and attach the `globalListener`
    * to the target if this is the first listener.
    *
-   * @param {Element | HTMLElement | Window | Document} element
-   * @param {string} eventType
-   * @param {EventListenerObject['handleEvent']} listener
-   * @param {AddEventListenerOptions=} options
+   * @type {Listener.ListenerAction<EventTarget>}
    */
   var addListener = function (element, eventType, listener, options) {
     // get element listeners first
@@ -67,9 +62,9 @@
     var size = oneElementMap.size;
 
     // register listener with its options
-    if (oneElementMap) {
-      oneElementMap.set(listener, options);
-    }
+    // if (oneElementMap) {
+    oneElementMap.set(listener, options);
+    // }
 
     // add listener last
     if (!size) {
@@ -81,10 +76,7 @@
    * Remove a listener from registry and detach the `globalListener`
    * if no listeners are found in the registry.
    *
-   * @param {Element | HTMLElement | Window | Document} element
-   * @param {string} eventType
-   * @param {EventListenerObject['handleEvent']} listener
-   * @param {AddEventListenerOptions=} options
+   * @type {Listener.ListenerAction<EventTarget>}
    */
   var removeListener = function (element, eventType, listener, options) {
     // get listener first
@@ -122,12 +114,6 @@
     registry: EventRegistry,
   };
 
-  exports.EventRegistry = EventRegistry;
-  exports.addListener = addListener;
-  exports["default"] = EventListener;
-  exports.globalListener = globalListener;
-  exports.removeListener = removeListener;
-
-  Object.defineProperty(exports, '__esModule', { value: true });
+  return EventListener;
 
 }));

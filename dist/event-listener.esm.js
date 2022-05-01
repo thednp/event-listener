@@ -1,6 +1,6 @@
 /*!
-* EventListener v0.0.5 (https://github.com/thednp/event-listener.js)
-* Modern event listener for efficient applications.
+* EventListener v1.0.0 (https://github.com/thednp/event-listener.js)
+* Modern event listener for efficient applications based on subscribe-publish pattern.
 * Copyright 2022 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener.js/blob/master/LICENSE)
 */
@@ -10,16 +10,14 @@ const EventRegistry = {};
 /**
  * The global event listener.
  *
- * @this {Element | HTMLElement | Window | Document}
- * @param {Event} e
- * @returns {void}
+ * @type {EventListener}
+ * @this {EventTarget}
  */
 function globalListener(e) {
   const that = this;
   const { type } = e;
-  const oneEvMap = EventRegistry[type] ? [...EventRegistry[type]] : [];
 
-  oneEvMap.forEach((elementsMap) => {
+  [...EventRegistry[type]].forEach((elementsMap) => {
     const [element, listenersMap] = elementsMap;
     [...listenersMap].forEach((listenerMap) => {
       if (element === that) {
@@ -38,10 +36,7 @@ function globalListener(e) {
  * Register a new listener with its options and attach the `globalListener`
  * to the target if this is the first listener.
  *
- * @param {Element | HTMLElement | Window | Document} element
- * @param {string} eventType
- * @param {EventListenerObject['handleEvent']} listener
- * @param {AddEventListenerOptions=} options
+ * @type {Listener.ListenerAction<EventTarget>}
  */
 const addListener = (element, eventType, listener, options) => {
   // get element listeners first
@@ -59,9 +54,9 @@ const addListener = (element, eventType, listener, options) => {
   const { size } = oneElementMap;
 
   // register listener with its options
-  if (oneElementMap) {
-    oneElementMap.set(listener, options);
-  }
+  // if (oneElementMap) {
+  oneElementMap.set(listener, options);
+  // }
 
   // add listener last
   if (!size) {
@@ -73,10 +68,7 @@ const addListener = (element, eventType, listener, options) => {
  * Remove a listener from registry and detach the `globalListener`
  * if no listeners are found in the registry.
  *
- * @param {Element | HTMLElement | Window | Document} element
- * @param {string} eventType
- * @param {EventListenerObject['handleEvent']} listener
- * @param {AddEventListenerOptions=} options
+ * @type {Listener.ListenerAction<EventTarget>}
  */
 const removeListener = (element, eventType, listener, options) => {
   // get listener first
@@ -113,4 +105,4 @@ const EventListener = {
   registry: EventRegistry,
 };
 
-export { EventRegistry, addListener, EventListener as default, globalListener, removeListener };
+export { EventListener as default };

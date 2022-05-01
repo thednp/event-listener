@@ -9,12 +9,12 @@
     "allowJs": true,
     "checkJs": true,
     "rootDir": "../",
-    "outFile": "types/event-listener.d.ts", // comment after generate
+    // "outFile": "types/event-listener.d.ts", // comment after generate
     "outDir": "types"
   },
   "files": [
     "types/index.d.ts",
-    // "types/bsn.d.ts", // comment to generate, delete file
+    "types/event-listener.d.ts", // comment to generate, delete file
     "types/more/listener.ts",
   ]
 }

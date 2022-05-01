@@ -3,9 +3,9 @@ Modern event listener for efficient applications based on the [subscribe-publish
 
 **EventListener** is less than 900 bytes when minified, but packs a surprising amount of power.
 
-[![NPM Version](https://img.shields.io/npm/v/event-listener.js.svg?style=flat-square)](https://www.npmjs.com/package/event-listener.js)
-[![NPM Downloads](https://img.shields.io/npm/dm/event-listener.js.svg?style=flat-square)](http://npm-stat.com/charts.html?package=event-listener.js)
-[![jsDeliver](https://data.jsdelivr.com/v1/package/npm/event-listener.js/badge)](https://www.jsdelivr.com/package/npm/event-listener.js)
+[![NPM Version](https://img.shields.io/npm/v/@thednp/event-listener.svg?style=flat-square)](https://www.npmjs.com/package/@thednp/event-listener)
+[![NPM Downloads](https://img.shields.io/npm/dm/@thednp/event-listener.svg?style=flat-square)](http://npm-stat.com/charts.html?package=@thednp/event-listener)
+[![jsDeliver](https://data.jsdelivr.com/v1/package/npm/@thednp/event-listener/badge)](https://www.jsdelivr.com/package/npm/@thednp/event-listener)
 
 
 # Features
@@ -18,17 +18,17 @@ Modern event listener for efficient applications based on the [subscribe-publish
 
 # NPM
 ```
-npm install event-listener.js
+npm install @thednp/event-listener
 ```
 
 # CDN
 ```html
-<script src="https://cdn.jsdelivr.net/npm/event-listener.js/dist/event-listener.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/event-listener.min.js"></script>
 ```
 
 # Use
 ```js
-import EventListener from 'event-listener.js';
+import EventListener from '@thednp/event-listener';
 
 // execute a listener once
 EventListener.on(document, 'DOMContentLoaded', () => {
@@ -85,20 +85,20 @@ const myListenerOptions = documentClickListeners && documentClickListeners.get(h
 You can also make use of "tree shaking" to import only the module you want, for instance:
 
 ```js
-import { addListener } from 'event-listener.js';
+import { on } from '@thednp/event-listener';
 
-addListener(document, handleMyClick, true);
+on(document, handleMyClick, true);
 ```
 
 Same applies to:
 
 ```js
-import { addListener } from 'event-listener.js/src/event-listener';
+import { addListener } from '@thednp/event-listener/src/event-listener';
 
 addListener(document, handleMyClick, true);
 ```
 
-For more advanced use, check out the [demo](./demo/index.html), showcasing the **EventListener** usage with a demo component.
+For more advanced use, check out the [demo](./docs/index.html), showcasing the **EventListener** usage with a demo component.
 
 # License
-**EventListener** is released under the [MIT License](https://github.com/thednp/event-listener.js/blob/main/LICENSE).
+**EventListener** is released under the [MIT License](https://github.com/thednp/event-listener/blob/main/LICENSE).

@@ -1,4 +1,9 @@
-node_modules/
-experiments/
+node_modules
+experiments
 .npmignore
-package-lock.json
+.nyc_output
+coverage
+cypress/videos
+cypress/screenshots
+cypress/coverage
+cypress/instrumented
