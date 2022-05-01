@@ -4,17 +4,17 @@
   "version": "1.0.1",
   "description": "Modern event listener for efficient applications based on subscribe-publish pattern.",
   "license": "MIT",
-  "homepage": "https://github.com/thednp/event-listener.js",
+  "homepage": "https://github.com/thednp/event-listener",
   "main": "dist/event-listener.min.js",
   "module": "dist/event-listener.esm.js",
   "jsnext": "src/index.js",
   "types": "types/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thednp/event-listener.js.git"
+    "url": "git+https://github.com/thednp/event-listener.git"
   },
   "bugs": {
-    "url": "https://github.com/thednp/event-listener.js/issues"
+    "url": "https://github.com/thednp/event-listener/issues"
   },
   "keywords": [
     "addEventListener",
