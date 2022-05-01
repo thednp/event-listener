@@ -54,9 +54,7 @@ const addListener = (element, eventType, listener, options) => {
   const { size } = oneElementMap;
 
   // register listener with its options
-  // if (oneElementMap) {
   oneElementMap.set(listener, options);
-  // }
 
   // add listener last
   if (!size) {
