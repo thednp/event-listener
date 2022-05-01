@@ -15,6 +15,7 @@ export function globalListener(e) {
 
   [...EventRegistry[type]].forEach((elementsMap) => {
     const [element, listenersMap] = elementsMap;
+    /* istanbul ignore else */
     if ([target, that].some((el) => element === el)) {
       [...listenersMap].forEach((listenerMap) => {
         const [listener, options] = listenerMap;
@@ -81,6 +82,7 @@ export const removeListener = (element, eventType, listener, options) => {
   if (!oneEventMap || !oneEventMap.size) delete EventRegistry[eventType];
 
   // remove listener last
+  /* istanbul ignore else */
   if (!oneElementMap || !oneElementMap.size) {
     element.removeEventListener(eventType, globalListener, eventOptions);
   }

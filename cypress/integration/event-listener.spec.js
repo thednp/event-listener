@@ -34,13 +34,13 @@ describe('EventListener Testing', () => {
         }
       })
       .wait(17)
-      .get('@body').trigger('click', { force: true }).then((body) => {
-        expect(body[0].innerHTML).to.equal('<b>click</b>');
+      .get('b').trigger('click', { force: true }).then((b) => {
+        expect(b[0].innerHTML).to.equal('<b>click</b>');
         expect(EventListener.registry.click).to.be.instanceOf(Map)
       })
       .wait(17)
-      .get('b').trigger('click', { force: true }).then((b) => {
-        expect(b[0].innerHTML).to.equal('<b>click</b>');
+      .get('@body').trigger('click', { force: true }).then((body) => {
+        expect(body[0].innerHTML).to.equal('<b>click</b>');
         expect(EventListener.registry.click).to.be.instanceOf(Map)
       })
   });
