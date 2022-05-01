@@ -1,5 +1,5 @@
 /*!
-* EventListener v1.0.0 (https://github.com/thednp/event-listener.js)
+* EventListener v1.0.1 (https://github.com/thednp/event-listener.js)
 * Modern event listener for efficient applications based on subscribe-publish pattern.
 * Copyright 2022 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener.js/blob/master/LICENSE)
@@ -22,12 +22,13 @@
   function globalListener(e) {
     var that = this;
     var type = e.type;
+    var target = e.target;
 
     [].concat( EventRegistry[type] ).forEach(function (elementsMap) {
       var element = elementsMap[0];
       var listenersMap = elementsMap[1];
-      [].concat( listenersMap ).forEach(function (listenerMap) {
-        if (element === that) {
+      if ([target, that].some(function (el) { return element === el; })) {
+        [].concat( listenersMap ).forEach(function (listenerMap) {
           var listener = listenerMap[0];
           var options = listenerMap[1];
           listener.apply(element, [e]);
@@ -35,8 +36,8 @@
           if (options && options.once) {
             removeListener(element, type, listener, options);
           }
-        }
-      });
+        });
+      }
     });
   }
 

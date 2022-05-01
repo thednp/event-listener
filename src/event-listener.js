@@ -11,20 +11,20 @@ export { EventRegistry };
  */
 export function globalListener(e) {
   const that = this;
-  const { type } = e;
+  const { type, target } = e;
 
   [...EventRegistry[type]].forEach((elementsMap) => {
     const [element, listenersMap] = elementsMap;
-    [...listenersMap].forEach((listenerMap) => {
-      if (element === that) {
+    if ([target, that].some((el) => element === el)) {
+      [...listenersMap].forEach((listenerMap) => {
         const [listener, options] = listenerMap;
         listener.apply(element, [e]);
 
         if (options && options.once) {
           removeListener(element, type, listener, options);
         }
-      }
-    });
+      });
+    }
   });
 }
 
