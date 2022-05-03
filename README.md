@@ -99,7 +99,7 @@ import { addListener } from '@thednp/event-listener/src/event-listener';
 addListener(document, handleMyClick, true);
 ```
 
-For more advanced use, check out the [demo](./docs/index.html), showcasing the **EventListener** usage with a demo component.
+For more advanced use, check out the [demo](https://thednp.github.io/event-listener), showcasing the **EventListener** usage with a demo component.
 
 # License
 **EventListener** is released under the [MIT License](https://github.com/thednp/event-listener/blob/main/LICENSE).
