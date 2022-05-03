@@ -1,1 +1,1 @@
-export {default as EventListener, EventRegistry, globalListener, addListener, removeListener} from '../../src/event-listener';
+export {default as Listener, EventRegistry, globalListener, addListener, removeListener} from '../../src/event-listener';

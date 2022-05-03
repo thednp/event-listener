@@ -1,5 +1,5 @@
 /*!
-* EventListener v1.0.2 (https://github.com/thednp/event-listener)
+* EventListener v1.0.3 (https://github.com/thednp/event-listener)
 * Modern event listener for efficient applications based on subscribe-publish pattern.
 * Copyright 2022 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener.js/blob/master/LICENSE)
@@ -15,12 +15,12 @@ const EventRegistry = {};
  */
 function globalListener(e) {
   const that = this;
-  const { type, target } = e;
+  const { type } = e;
 
   [...EventRegistry[type]].forEach((elementsMap) => {
     const [element, listenersMap] = elementsMap;
     /* istanbul ignore else */
-    if ([target, that].some((el) => element === el)) {
+    if (element === that) {
       [...listenersMap].forEach((listenerMap) => {
         const [listener, options] = listenerMap;
         listener.apply(element, [e]);
@@ -98,11 +98,11 @@ const removeListener = (element, eventType, listener, options) => {
  * @see https://gist.github.com/shystruk/d16c0ee7ac7d194da9644e5d740c8338#file-subpub-js
  * @see https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8
  */
-const EventListener = {
+const Listener = {
   on: addListener,
   off: removeListener,
   globalListener,
   registry: EventRegistry,
 };
 
-export { EventListener as default };
+export { Listener as default };
