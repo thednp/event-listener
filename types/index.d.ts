@@ -12,3 +12,7 @@ export type ListenerAction<T> = (
   
 import { default as Listener } from 'event-listener/src/event-listener';
 export { EventRegistry, globalListener, addListener, removeListener } from "event-listener/src/event-listener";
+
+declare module "@thednp/event-listener" {
+  export default Listener;
+}
