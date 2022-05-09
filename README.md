@@ -1,4 +1,8 @@
-# EventListener [![Coverage Status](https://coveralls.io/repos/github/thednp/event-listener/badge.svg?branch=main)](https://coveralls.io/github/thednp/event-listener?branch=main) ![cypress version](https://img.shields.io/badge/cypress-9.6.0-brightgreen) ![typescript version](https://img.shields.io/badge/typescript-4.5.2-brightgreen) [![ci](https://github.com/thednp/event-listener/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/thednp/event-listener/actions/workflows/ci.yml)
+# EventListener
+[![Coverage Status](https://coveralls.io/repos/github/thednp/event-listener/badge.svg)](https://coveralls.io/github/thednp/event-listener)
+![cypress version](https://img.shields.io/badge/cypress-9.6.0-brightgreen)
+![typescript version](https://img.shields.io/badge/typescript-4.5.2-brightgreen)
+[![ci](https://github.com/thednp/event-listener/actions/workflows/ci.yml/badge.svg)](https://github.com/thednp/event-listener/actions/workflows/ci.yml)
 
 Modern event listener for efficient applications based on the [subscribe-publish](https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8) pattern.
 
