@@ -1,8 +1,8 @@
 {
   "name": "@thednp/event-listener",
   "author": "thednp",
-  "version": "1.0.3",
-  "description": "Modern event listener for efficient applications based on subscribe-publish pattern.",
+  "version": "1.0.4",
+  "description": "Modern event listener for efficient web applications based on subscribe-publish pattern.",
   "license": "MIT",
   "homepage": "https://thednp.github.io/event-listener",
   "main": "dist/event-listener.min.js",
