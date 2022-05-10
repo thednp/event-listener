@@ -3,13 +3,13 @@
 
 const { readFileSync } = require('fs');
 const { createInstrumenter } = require('istanbul-lib-instrument');
-const debug = require('debug')('istanbul-lib-instrument')
+const debug = require('debug');
 
 // import Cypress settings
 let { env: { sourceFolder } } = require('../../cypress.json');
 sourceFolder = sourceFolder || 'src';
 const [name] = process.cwd().split(/[\\|\/]/).slice(-1);
-const sourcePath = sourceFolder.replace(/\\/,'\/');
+const sourcePath = sourceFolder.replace(/\\/g,'\/');
 
 const sourceFilter = `${name}/${sourcePath}`;
 const instrumenter = createInstrumenter({

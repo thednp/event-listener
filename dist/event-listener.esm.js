@@ -1,6 +1,6 @@
 /*!
-* EventListener v1.0.4 (https://thednp.github.io/event-listener)
-* Modern event listener for efficient applications based on subscribe-publish pattern.
+* EventListener v1.0.5 (https://thednp.github.io/event-listener)
+* Modern event listener for efficient web applications based on subscribe-publish pattern.
 * Copyright 2022 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener.js/blob/master/LICENSE)
 */
