@@ -23,8 +23,9 @@ const esbuildPluginIstanbul = () => ({
     build.onLoad({filter: /\.(js|jsx|ts|tsx)$/ },
       async ({ path }) => {
         const contents = String(readFileSync(path, 'utf8'));
+        const samePath = path.replace(/\\/g, '/')
 
-        if (!sourceFilter.split(/\\|\//).every((word) => path.includes(word))) {
+        if (!samePath.includes(sourceFilter)) {
           return { contents };
         }
         debug('instrumenting %s for output coverage', path);
