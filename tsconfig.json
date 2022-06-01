@@ -15,6 +15,6 @@
   "files": [
     "types/index.d.ts",
     "types/event-listener.d.ts", // comment to generate, delete file
-    "types/more/listener.ts",
+    // "types/more/listener.ts", // un-comment to generate, delete file
   ]
 }

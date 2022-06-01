@@ -1,4 +1,4 @@
-# EventListener
+## EventListener
 [![Coverage Status](https://coveralls.io/repos/github/thednp/event-listener/badge.svg)](https://coveralls.io/github/thednp/event-listener)
 ![cypress version](https://img.shields.io/badge/cypress-9.6.0-brightgreen)
 ![typescript version](https://img.shields.io/badge/typescript-4.5.2-brightgreen)
@@ -13,7 +13,7 @@ Modern event listener for efficient applications based on the [subscribe-publish
 [![jsDeliver](https://data.jsdelivr.com/v1/package/npm/@thednp/event-listener/badge)](https://www.jsdelivr.com/package/npm/@thednp/event-listener)
 
 
-# Features
+## Features
 * **EventListener** is ES6+ sourced with TypeScript definitions;
 * **EventListener** comes with ES6, ES5 and ESM packaging, all in `/dist` folder;
 * **EventListener** makes use of the native [Map](https://caniuse.com/mdn-javascript_builtins_map) to subscribe/register or unsubscribe/remove listeners, which is perfect since we need to make sure the exact listeners are added/removed; this completely invalidates the need to [deconstruct function objects](https://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-deep-clone-an-object-in-javascript) for comparison's sake to make sure event listeners are properly handled;
@@ -26,12 +26,12 @@ Modern event listener for efficient applications based on the [subscribe-publish
 npm install @thednp/event-listener
 ```
 
-# CDN
+## CDN
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/event-listener.min.js"></script>
 ```
 
-# Use
+## Use
 ```js
 import EventListener from '@thednp/event-listener';
 
@@ -86,7 +86,7 @@ const myListenerOptions = documentClickListeners && documentClickListeners.get(h
 // returns false, which is the `useCapture` option value added for `handleMyClick`
 ```
 
-# Advanced Use
+## Advanced Use
 You can also make use of "tree shaking" to import only the module you want, for instance:
 
 ```js
@@ -105,5 +105,12 @@ addListener(document, handleMyClick, true);
 
 For more advanced use, check out the [demo](https://thednp.github.io/event-listener), showcasing the **EventListener** usage with a demo component.
 
-# License
+## Run the tests suite (new)
+* [Download](https://github.com/thednp/event-listener/archive/refs/heads/master.zip) the package from Github;
+* unpack/unzip and open the folder with your editor;
+* open your terminal and navigate to the root of the unpacked folder;
+* run `npm install` or `npm update`, takes a few minutes to download the Electron browser;
+* run `npm run cypress` to open the Cypress console OR `npm run test` to run the tests in headless mode.
+
+## License
 **EventListener** is released under the [MIT License](https://github.com/thednp/event-listener/blob/main/LICENSE).
