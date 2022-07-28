@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import EventListener from "../../src/index";
+import Listener from "../../src/index";
 
 const clickListener = function ({ target }) {
   target.innerHTML = "<b>click</b>";
@@ -10,7 +10,7 @@ const scrollListener = function ({ target }) {
   target.body.innerHTML = "<b>scroll</b>";
 };
 
-describe("EventListener Testing", () => {
+describe("Listener Testing", () => {
   before(() => {
     cy.visit("cypress/test.html").wait(17);
   });
@@ -31,7 +31,7 @@ describe("EventListener Testing", () => {
     cy.get("@body")
       .then((body) => {
         if (body[0]) {
-          EventListener.on(body[0], "click", clickListener);
+          Listener.on(body[0], "click", clickListener);
         }
       })
       .wait(17)
@@ -39,26 +39,26 @@ describe("EventListener Testing", () => {
       .trigger("click", { force: true })
       .then((b) => {
         expect(b[0].innerHTML).to.equal("<b>click</b>");
-        expect(EventListener.registry.click).to.be.instanceOf(Map);
+        expect(Listener.registry.click).to.be.instanceOf(Map);
       })
       .wait(17)
       .get("@body")
       .trigger("click", { force: true })
       .then((body) => {
         expect(body[0].innerHTML).to.equal("<b>click</b>");
-        expect(EventListener.registry.click).to.be.instanceOf(Map);
+        expect(Listener.registry.click).to.be.instanceOf(Map);
       });
   });
 
   it("can do `addListener` scroll", () => {
-    cy.get("@win")
+    cy.window()
       .then((win) => {
         if (win) {
-          EventListener.on(win, "scroll", scrollListener);
+          Listener.on(win, "scroll", scrollListener);
         }
       })
       .wait(100)
-      .get("@win")
+      .window()
       .then((win) => {
         win.scrollTo(0, 1500);
       })
@@ -66,7 +66,7 @@ describe("EventListener Testing", () => {
       .get("@body")
       .then((body) => {
         expect(body[0].innerHTML).to.equal("<b>scroll</b>");
-        expect(EventListener.registry.scroll).to.be.instanceOf(Map);
+        expect(Listener.registry.scroll).to.be.instanceOf(Map);
       });
   });
 
@@ -74,48 +74,48 @@ describe("EventListener Testing", () => {
     cy.get("@body")
       .then((body) => {
         if (body[0]) {
-          EventListener.on(body[0], "click", clickListener);
+          Listener.on(body[0], "click", clickListener);
         }
       })
       .get("b")
       .then((b) => {
         if (b[0]) {
-          EventListener.on(b[0], "click", clickListener);
+          Listener.on(b[0], "click", clickListener);
         }
       })
-      .get("@win")
+      .window()
       .then((win) => {
         if (win) {
-          EventListener.on(win, "scroll", scrollListener);
+          Listener.on(win, "scroll", scrollListener);
         }
       })
       .wait(17)
       .get("b")
       .then((b) => {
         if (b[0]) {
-          EventListener.off(b[0], "click", clickListener);
+          Listener.off(b[0], "click", clickListener);
         }
       })
       .get("@body")
       .then((body) => {
         if (body[0]) {
-          expect(EventListener.registry.click).to.be.instanceOf(Map);
-          EventListener.off(body[0], "click", clickListener);
+          expect(Listener.registry.click).to.be.instanceOf(Map);
+          Listener.off(body[0], "click", clickListener);
         }
       })
-      .get("@win")
+      .window()
       .then((win) => {
         if (win) {
-          expect(EventListener.registry.scroll).to.be.instanceOf(Map);
-          EventListener.off(win, "scroll", scrollListener);
+          expect(Listener.registry.scroll).to.be.instanceOf(Map);
+          Listener.off(win, "scroll", scrollListener);
         }
       })
       .wait(17)
       .get("@body")
       .then((body) => {
         if (body[0]) {
-          expect(EventListener.registry.click).to.be.undefined;
-          expect(EventListener.registry.scroll).to.be.undefined;
+          expect(Listener.registry.click).to.be.undefined;
+          expect(Listener.registry.scroll).to.be.undefined;
         }
       });
   });
@@ -124,7 +124,7 @@ describe("EventListener Testing", () => {
     cy.get("@body")
       .then((body) => {
         if (body[0]) {
-          EventListener.on(body[0], "click", clickListener, { once: true });
+          Listener.on(body[0], "click", clickListener, { once: true });
         }
       })
       .wait(17)
@@ -134,14 +134,14 @@ describe("EventListener Testing", () => {
       .get("@body")
       .then((body) => {
         if (body[0]) {
-          expect(EventListener.registry.click).to.be.undefined;
+          expect(Listener.registry.click).to.be.undefined;
         }
       })
       .get("@body")
       .then((body) => {
         if (body[0]) {
           // this should produce no effect
-          EventListener.off(body[0], "click", clickListener);
+          Listener.off(body[0], "click", clickListener);
         }
       })
       .wait(17);
