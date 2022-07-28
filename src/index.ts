@@ -1,15 +1,14 @@
-/** @type {Record<string, any>} */
-const EventRegistry = {};
+import { EventsRegistry } from "./types";
+
+const EventRegistry: EventsRegistry = {};
 
 export { EventRegistry };
 
 /**
  * The global event listener.
  *
- * @type {EventListener}
- * @this {EventTarget}
  */
-export function globalListener(e) {
+export function globalListener(e: Event): void {
   const that = this;
   const { type } = e;
 
@@ -32,10 +31,13 @@ export function globalListener(e) {
 /**
  * Register a new listener with its options and attach the `globalListener`
  * to the target if this is the first listener.
- *
- * @type {Listener.ListenerAction<EventTarget>}
  */
-export const addListener = (element, eventType, listener, options) => {
+export const addListener = (
+  element: EventTarget,
+  eventType: string,
+  listener: EventListenerObject["handleEvent"],
+  options?: AddEventListenerOptions
+): void => {
   // get element listeners first
   if (!EventRegistry[eventType]) {
     EventRegistry[eventType] = new Map();
@@ -63,22 +65,26 @@ export const addListener = (element, eventType, listener, options) => {
  * Remove a listener from registry and detach the `globalListener`
  * if no listeners are found in the registry.
  *
- * @type {Listener.ListenerAction<EventTarget>}
  */
-export const removeListener = (element, eventType, listener, options) => {
+export const removeListener = (
+  element: EventTarget,
+  eventType: string,
+  listener: EventListenerObject["handleEvent"],
+  options?: AddEventListenerOptions
+): void => {
   // get listener first
   const oneEventMap = EventRegistry[eventType];
   const oneElementMap = oneEventMap && oneEventMap.get(element);
   const savedOptions = oneElementMap && oneElementMap.get(listener);
 
   // also recover initial options
-  const { options: eventOptions } = savedOptions !== undefined
-    ? savedOptions
-    : { options };
+  const eventOptions = savedOptions !== undefined ? savedOptions : options;
 
   // unsubscribe second, remove from registry
-  if (oneElementMap && oneElementMap.has(listener)) oneElementMap.delete(listener);
-  if (oneEventMap && (!oneElementMap || !oneElementMap.size)) oneEventMap.delete(element);
+  if (oneElementMap && oneElementMap.has(listener))
+    oneElementMap.delete(listener);
+  if (oneEventMap && (!oneElementMap || !oneElementMap.size))
+    oneEventMap.delete(element);
   if (!oneEventMap || !oneEventMap.size) delete EventRegistry[eventType];
 
   // remove listener last

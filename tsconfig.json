@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "moduleResolution": "Node",
-    "declaration": true,
-    "resolveJsonModule": true,
-    "emitDeclarationOnly": true,
-    "strict": true,
+    "lib": ["dom", "ESNext"],
     "allowJs": true,
-    "checkJs": true,
-    "rootDir": "../",
-    // "outFile": "types/event-listener.d.ts", // comment after generate
-    "outDir": "types"
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "removeComments": true,
+    "module": "ESNext",
+    "baseUrl": "./"
+    // "resolveJsonModule": true,
+    // "inlineSourceMap": true,
+    // "moduleResolution": "Node",
+    // "outDir": "./types"
+    // "outFile": "./types/index.d.ts"
   },
-  "files": [
-    "types/index.d.ts",
-    "types/event-listener.d.ts", // comment to generate, delete file
-    // "types/more/listener.ts", // un-comment to generate, delete file
-  ]
+  "include": ["src/*"],
+  "exclude": ["node_modules"]
 }
