@@ -9,9 +9,7 @@
 [![typescript version](https://img.shields.io/badge/typescript-4.7.4-brightgreen)](https://www.typescriptlang.org/)
 [![esbuild version](https://img.shields.io/badge/esbuild-0.14.30-brightgreen)](https://esbuild.github.io/)
 
-Modern event listener for efficient applications based on the [subscribe-publish](https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8) pattern.
-
-**EventListener** is less than 900 bytes when minified, but packs a surprising amount of power.
+A TypeScript sourced event listener for efficient applications based on the [subscribe-publish](https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8) pattern, less than 900 bytes when minified and packs a surprising amount of power.
 
 ## Features
 
@@ -30,7 +28,7 @@ npm install @thednp/event-listener
 ## CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/event-listener.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/index.min.js"></script>
 ```
 
 ## Use
