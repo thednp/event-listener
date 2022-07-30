@@ -1,5 +1,5 @@
 /*!
-* Listener v2.0.0alpha1 (https://thednp.github.io/event-listener)
+* Listener v2.0.0alpha2 (https://thednp.github.io/event-listener)
 * Copyright 2022 © thednp
 * Licensed under MIT (https://thednp.github.io/event-listener/blob/main/LICENSE)
 */

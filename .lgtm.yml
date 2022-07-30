@@ -1,0 +1,8 @@
+extraction:
+  typescript:
+    index:
+      exclude:
+        - node_modules
+        - cypress
+        - dist
+        - docs

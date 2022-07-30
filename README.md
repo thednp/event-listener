@@ -19,10 +19,10 @@ A TypeScript sourced event listener for efficient applications based on the [sub
 - **EventListener** "should" be able to manage event options, especially `once`, meaning that when the option is `true`, the listener is automatically un-subscribed and detached from target;
 - **EventListener** will unsubscribe and detach listeners with the same options used when attached, which means you can "lazy" remove listeners on the fly.
 
-# NPM
+# Install
 
 ```
-npm install @thednp/event-listener
+npm i @thednp/event-listener
 ```
 
 ## CDN
