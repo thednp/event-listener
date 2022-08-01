@@ -1,4 +1,4 @@
-import { EventsRegistry } from "./types";
+import { EventsRegistry } from './types';
 
 const EventRegistry: EventsRegistry = {};
 
@@ -50,7 +50,7 @@ export const addListener = (
   const oneElementMap = oneEventMap.get(element);
 
   // get listeners size
-  if (typeof oneElementMap === "undefined") return;
+  if (typeof oneElementMap === 'undefined') return;
 
   const { size } = oneElementMap;
 

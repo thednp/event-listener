@@ -25,7 +25,7 @@ export const addListener = (element, eventType, listener, options) => {
         oneEventMap.set(element, new Map());
     }
     const oneElementMap = oneEventMap.get(element);
-    if (typeof oneElementMap === "undefined")
+    if (typeof oneElementMap === 'undefined')
         return;
     const { size } = oneElementMap;
     oneElementMap.set(listener, options);

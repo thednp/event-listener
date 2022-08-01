@@ -1,4 +1,4 @@
-import { EventsRegistry } from "./types";
+import { EventsRegistry } from './types';
 declare const EventRegistry: EventsRegistry;
 export { EventRegistry };
 export declare function globalListener(e: Event): void;
