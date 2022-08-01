@@ -34,33 +34,33 @@ npm i @thednp/event-listener
 ## Use
 
 ```js
-import Listener from "@thednp/event-listener";
+import Listener from '@thednp/event-listener';
 
 // execute a listener once
 Listener.on(
   document,
-  "DOMContentLoaded",
+  'DOMContentLoaded',
   () => {
-    console.log("document is now loaded");
+    console.log('document is now loaded');
   },
   { once: true }
 );
 
 // add a listener with `useCapture: false`
 function handleMyClick(e) {
-  if (e.target.tagName === "button") {
+  if (e.target.tagName === 'button') {
     e.preventDefault();
     e.stopImmediatePropagation();
   }
-  console.log("do something else instead");
+  console.log('do something else instead');
 }
-Listener.on(document, "click", handleMyClick, false);
+Listener.on(document, 'click', handleMyClick, false);
 
 // remove a listener, `EventListener` will get listener options from registry
-Listener.off(document, "click", handleMyClick);
+Listener.off(document, 'click', handleMyClick);
 
 // add listener to `window`, this listener has no name and cannot be removed
-Listener.on(window, "scroll", () => console.log(window.scrollY));
+Listener.on(window, 'scroll', () => console.log(window.scrollY));
 ```
 
 Since we're implementing `Map`, you can make use of its prototype to access registry:
@@ -97,7 +97,7 @@ const myListenerOptions = documentClickListeners && documentClickListeners.get(h
 You can also make use of "tree shaking" to import only the module you want, for instance:
 
 ```js
-import { on } from "@thednp/event-listener";
+import { on } from '@thednp/event-listener';
 
 on(document, handleMyClick, true);
 ```
@@ -105,7 +105,7 @@ on(document, handleMyClick, true);
 Same applies to:
 
 ```js
-import { addListener } from "@thednp/event-listener/src/event-listener";
+import { addListener } from '@thednp/event-listener/src/event-listener';
 
 addListener(document, handleMyClick, true);
 ```
