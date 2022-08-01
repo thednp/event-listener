@@ -1,12 +1,13 @@
 {
   "name": "@thednp/event-listener",
   "author": "thednp",
-  "version": "2.0.0alpha2",
+  "version": "2.0.0alpha3",
   "description": "Modern event listener for efficient web applications based on subscribe-publish pattern.",
   "license": "MIT",
   "homepage": "https://thednp.github.io/event-listener",
   "main": "src/index.ts",
-  "module": "dist/index.cjs.js",
+  "module": "dist/event-listener.cjs.js",
+  "esmodule": "dist/event-listener.js",
   "esnext": "src/index.js",
   "types": "types/index.d.ts",
   "repository": {

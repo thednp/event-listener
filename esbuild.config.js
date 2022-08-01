@@ -7,9 +7,10 @@ process.argv.forEach((str) => {
   options[key] = val;
 });
 
+const [FILENAME] = process.cwd().split(/\\|\//).slice(-1);
 const MIN = options.MIN === "true" || false; // true/false|unset
 const FORMAT = options.FORMAT || "esm"; // JS cjs|iife|esm
-// const IN = options.INPUTFILE;
+const IN = options.INPUTFILE || "./src/index.ts";
 const OUT = options.OUTPUTFILE;
 
 const NAME = options.NAME || "Listener";
@@ -25,24 +26,23 @@ const miniBanner = `// ${NAME} v${pkg.version} | ${pkg.author} © ${YEAR} | ${pk
 
 const OUTPUTFILE = OUT
   ? OUT
-  : `./dist/index${
-      FORMAT === "iife" ? ".es5" : FORMAT === "cjs" ? ".cjs" : ""
-    }${MIN ? ".min" : ""}.js`;
+  : `./dist/${FILENAME}${FORMAT === "iife" ? ".es5" : FORMAT === "cjs" ? ".cjs" : ""}${
+      MIN ? ".min" : ""
+    }.js`;
 
 esbuild
   .build({
-    entryPoints: ["./src/index.ts"],
+    entryPoints: [IN],
     outfile: OUTPUTFILE,
     banner: { js: MIN ? miniBanner : banner },
     bundle: true,
     minify: MIN,
     platform: "neutral",
     sourcemap: true, // !MIN && FORMAT === "esm" ? true : false,
-    globalName: `__${NAME}_export`,
-    footer:
-      FORMAT === "iife"
-        ? { js: `const ${NAME} = __${NAME}_export.default;` }
-        : {},
+    globalName: NAME,
+    // globalName: `__${NAME}_export`,
+    // footer: FORMAT === "iife" ? { js: `const ${NAME} = __${NAME}_export.default;` } : {},
+    // footer: FORMAT === "iife" ? { js: `const ${NAME} = __${NAME}_export.default;` } : {},
     target: "ESNext",
     format: FORMAT ? FORMAT : "esm",
   })

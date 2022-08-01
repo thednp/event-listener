@@ -5,7 +5,7 @@ const EventRegistry: EventsRegistry = {};
 export { EventRegistry };
 
 /**
- * The global event listener.
+ * The global event listener. This function must be a Function.
  *
  */
 export function globalListener(e: Event): void {
@@ -35,7 +35,7 @@ export function globalListener(e: Event): void {
 export const addListener = (
   element: EventTarget,
   eventType: string,
-  listener: EventListenerObject["handleEvent"],
+  listener: EventListener,
   options?: AddEventListenerOptions
 ): void => {
   // get element listeners first
@@ -50,6 +50,8 @@ export const addListener = (
   const oneElementMap = oneEventMap.get(element);
 
   // get listeners size
+  if (typeof oneElementMap === "undefined") return;
+
   const { size } = oneElementMap;
 
   // register listener with its options
@@ -69,7 +71,7 @@ export const addListener = (
 export const removeListener = (
   element: EventTarget,
   eventType: string,
-  listener: EventListenerObject["handleEvent"],
+  listener: EventListener,
   options?: AddEventListenerOptions
 ): void => {
   // get listener first
@@ -81,10 +83,8 @@ export const removeListener = (
   const eventOptions = savedOptions !== undefined ? savedOptions : options;
 
   // unsubscribe second, remove from registry
-  if (oneElementMap && oneElementMap.has(listener))
-    oneElementMap.delete(listener);
-  if (oneEventMap && (!oneElementMap || !oneElementMap.size))
-    oneEventMap.delete(element);
+  if (oneElementMap && oneElementMap.has(listener)) oneElementMap.delete(listener);
+  if (oneEventMap && (!oneElementMap || !oneElementMap.size)) oneEventMap.delete(element);
   if (!oneEventMap || !oneEventMap.size) delete EventRegistry[eventType];
 
   // remove listener last
@@ -100,11 +100,11 @@ export const removeListener = (
  * @see https://gist.github.com/shystruk/d16c0ee7ac7d194da9644e5d740c8338#file-subpub-js
  * @see https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8
  */
-const Listener = {
+export default {
   on: addListener,
   off: removeListener,
   globalListener,
   registry: EventRegistry,
 };
 
-export default Listener;
+// export default Listener;

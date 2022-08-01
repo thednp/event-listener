@@ -25,6 +25,8 @@ export const addListener = (element, eventType, listener, options) => {
         oneEventMap.set(element, new Map());
     }
     const oneElementMap = oneEventMap.get(element);
+    if (typeof oneElementMap === "undefined")
+        return;
     const { size } = oneElementMap;
     oneElementMap.set(listener, options);
     if (!size) {
@@ -46,11 +48,10 @@ export const removeListener = (element, eventType, listener, options) => {
         element.removeEventListener(eventType, globalListener, eventOptions);
     }
 };
-const Listener = {
+export default {
     on: addListener,
     off: removeListener,
     globalListener,
     registry: EventRegistry,
 };
-export default Listener;
 //# sourceMappingURL=index.js.map

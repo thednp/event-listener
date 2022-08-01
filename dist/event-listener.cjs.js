@@ -1,6 +1,6 @@
 "use strict";
 /*!
-* Listener v2.0.0alpha2 (https://thednp.github.io/event-listener)
+* Listener v2.0.0alpha3 (https://thednp.github.io/event-listener)
 * Copyright 2022 © thednp
 * Licensed under MIT (https://thednp.github.io/event-listener/blob/main/LICENSE)
 */
@@ -58,6 +58,8 @@ var addListener = (element, eventType, listener, options) => {
     oneEventMap.set(element, /* @__PURE__ */ new Map());
   }
   const oneElementMap = oneEventMap.get(element);
+  if (typeof oneElementMap === "undefined")
+    return;
   const { size } = oneElementMap;
   oneElementMap.set(listener, options);
   if (!size) {
@@ -79,11 +81,10 @@ var removeListener = (element, eventType, listener, options) => {
     element.removeEventListener(eventType, globalListener, eventOptions);
   }
 };
-var Listener = {
+var src_default = {
   on: addListener,
   off: removeListener,
   globalListener,
   registry: EventRegistry
 };
-var src_default = Listener;
-//# sourceMappingURL=index.cjs.js.map
+//# sourceMappingURL=event-listener.cjs.js.map
