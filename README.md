@@ -28,7 +28,7 @@ npm i @thednp/event-listener
 ## CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/event-listener.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/event-listener.js"></script>
 ```
 
 ## Use
@@ -37,13 +37,10 @@ npm i @thednp/event-listener
 import Listener from '@thednp/event-listener';
 
 // execute a listener once
-Listener.on(
-  document,
-  'DOMContentLoaded',
-  () => {
+Listener.on(document, 'DOMContentLoaded', () => {
     console.log('document is now loaded');
   },
-  { once: true }
+  { once: true },
 );
 
 // add a listener with `useCapture: false`

@@ -1,57 +1,58 @@
-import { EventsRegistry } from './types';
+/**
+ * Advanced event listener based on subscribe / publish pattern.
+ *
+ * @see https://www.patterns.dev/posts/classic-design-patterns/#observerpatternjavascript
+ * @see https://gist.github.com/shystruk/d16c0ee7ac7d194da9644e5d740c8338#file-subpub-js
+ * @see https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8
+ */
 
-const EventRegistry: EventsRegistry = {};
-
-export { EventRegistry };
+type ListenerObject = Map<EventListener, AddEventListenerOptions | undefined | boolean>;
+type EventsRegistry = Record<string, Map<EventTarget, ListenerObject>>;
+const eventsRegistry: EventsRegistry = {};
 
 /**
  * The global event listener. This function must be a Function.
- *
+ * eslint-ignore-next
  */
-export function globalListener(e: Event): void {
-  const that = this;
-  const { type } = e;
+const globalListener = (e: Event): void => {
+  const { type, target, currentTarget } = e;
 
-  [...EventRegistry[type]].forEach((elementsMap) => {
-    const [element, listenersMap] = elementsMap;
+  [...eventsRegistry[type]].forEach(([element, listenersMap]) => {
     /* istanbul ignore else */
-    if (element === that) {
-      [...listenersMap].forEach((listenerMap) => {
-        const [listener, options] = listenerMap;
+    if ([currentTarget, target].includes(element)) {
+      [...listenersMap].forEach(([listener, options]) => {
         listener.apply(element, [e]);
 
-        if (options && options.once) {
+        if (typeof options === 'object' && options.once) {
           removeListener(element, type, listener, options);
         }
       });
     }
   });
-}
+};
 
 /**
  * Register a new listener with its options and attach the `globalListener`
  * to the target if this is the first listener.
  */
-export const addListener = (
+const addListener = (
   element: EventTarget,
   eventType: string,
   listener: EventListener,
-  options?: AddEventListenerOptions
+  options?: AddEventListenerOptions,
 ): void => {
   // get element listeners first
-  if (!EventRegistry[eventType]) {
-    EventRegistry[eventType] = new Map();
+  if (!eventsRegistry[eventType]) {
+    eventsRegistry[eventType] = new Map();
   }
-  const oneEventMap = EventRegistry[eventType];
+  const oneEventMap = eventsRegistry[eventType];
 
   if (!oneEventMap.has(element)) {
     oneEventMap.set(element, new Map());
   }
-  const oneElementMap = oneEventMap.get(element);
+  const oneElementMap = oneEventMap.get(element) as ListenerObject;
 
   // get listeners size
-  if (typeof oneElementMap === 'undefined') return;
-
   const { size } = oneElementMap;
 
   // register listener with its options
@@ -68,14 +69,14 @@ export const addListener = (
  * if no listeners are found in the registry.
  *
  */
-export const removeListener = (
+const removeListener = (
   element: EventTarget,
   eventType: string,
   listener: EventListener,
-  options?: AddEventListenerOptions
+  options?: AddEventListenerOptions,
 ): void => {
   // get listener first
-  const oneEventMap = EventRegistry[eventType];
+  const oneEventMap = eventsRegistry[eventType];
   const oneElementMap = oneEventMap && oneEventMap.get(element);
   const savedOptions = oneElementMap && oneElementMap.get(listener);
 
@@ -85,7 +86,7 @@ export const removeListener = (
   // unsubscribe second, remove from registry
   if (oneElementMap && oneElementMap.has(listener)) oneElementMap.delete(listener);
   if (oneEventMap && (!oneElementMap || !oneElementMap.size)) oneEventMap.delete(element);
-  if (!oneEventMap || !oneEventMap.size) delete EventRegistry[eventType];
+  if (!oneEventMap || !oneEventMap.size) delete eventsRegistry[eventType];
 
   // remove listener last
   /* istanbul ignore else */
@@ -94,17 +95,9 @@ export const removeListener = (
   }
 };
 
-/**
- * Advanced event listener based on subscribe / publish pattern.
- * @see https://www.patterns.dev/posts/classic-design-patterns/#observerpatternjavascript
- * @see https://gist.github.com/shystruk/d16c0ee7ac7d194da9644e5d740c8338#file-subpub-js
- * @see https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8
- */
 export default {
   on: addListener,
   off: removeListener,
   globalListener,
-  registry: EventRegistry,
+  registry: eventsRegistry,
 };
-
-// export default Listener;

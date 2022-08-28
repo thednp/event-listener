@@ -13,9 +13,8 @@ jobs:
         with:
           node-version: 18
       - uses: bahmutov/npm-install@v1
-      - run: npm run lint:ts
-      - run: npm run build-esm
-      - run: npx cypress run
+      - run: npm run build # includes lint
+      - run: npm run test
 
       - name: Upload coverage report on Node 16 to coveralls.io...
         uses: coverallsapp/github-action@v1.1.2
