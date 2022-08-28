@@ -1,4 +1,4 @@
-## EventListener ![eslint version](https://img.shields.io/badge/eslint-8.23.0-brightgreen) ![vite version](https://img.shields.io/badge/vite-3.0.9-brightgreen)
+## EventListener
 
 [![Coverage Status](https://coveralls.io/repos/github/thednp/event-listener/badge.svg)](https://coveralls.io/github/thednp/event-listener)
 [![ci](https://github.com/thednp/event-listener/actions/workflows/ci.yml/badge.svg)](https://github.com/thednp/event-listener/actions/workflows/ci.yml)
@@ -8,6 +8,8 @@
 [![cypress version](https://img.shields.io/badge/cypress-10.6.0-brightgreen)](https://cypress.io/)
 [![typescript version](https://img.shields.io/badge/typescript-4.7.4-brightgreen)](https://www.typescriptlang.org/)
 [![esbuild version](https://img.shields.io/badge/esbuild-0.14.30-brightgreen)](https://esbuild.github.io/)
+[![eslint version](https://img.shields.io/badge/eslint-8.23.0-brightgreen)](https://github.com/eslint)
+[![vite version](https://img.shields.io/badge/vite-3.0.9-brightgreen)](https://github.com/vitejs)
 
 A TypeScript sourced event listener for efficient applications based on the [subscribe-publish](https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8) pattern, less than 900 bytes when minified and packs a surprising amount of power.
 
