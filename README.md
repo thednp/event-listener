@@ -5,7 +5,7 @@
 [![NPM Version](https://img.shields.io/npm/v/@thednp/event-listener.svg)](https://www.npmjs.com/package/@thednp/event-listener)
 [![NPM Downloads](https://img.shields.io/npm/dm/@thednp/event-listener.svg)](http://npm-stat.com/charts.html?package=@thednp/event-listener)
 [![jsDeliver](https://img.shields.io/jsdelivr/npm/hw/@thednp/event-listener)](https://www.jsdelivr.com/package/npm/@thednp/event-listener)
-[![cypress version](https://img.shields.io/badge/cypress-10.3.1-brightgreen)](https://cypress.io/)
+[![cypress version](https://img.shields.io/badge/cypress-10.6.0-brightgreen)](https://cypress.io/)
 [![typescript version](https://img.shields.io/badge/typescript-4.7.4-brightgreen)](https://www.typescriptlang.org/)
 [![esbuild version](https://img.shields.io/badge/esbuild-0.14.30-brightgreen)](https://esbuild.github.io/)
 
