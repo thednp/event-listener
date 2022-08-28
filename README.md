@@ -86,7 +86,7 @@ if (documentClickListeners && documentClickListeners.has(handleMyClick)) {
 }
 
 // get listener options
-const myListenerOptions = documentClickListeners && documentClickListeners.get(handleMyClick));
+const myListenerOptions = documentClickListeners && documentClickListeners.get(handleMyClick);
 
 // returns false, which is the `useCapture` option value added for `handleMyClick`
 ```
@@ -99,14 +99,6 @@ You can also make use of "tree shaking" to import only the module you want, for 
 import { on } from '@thednp/event-listener';
 
 on(document, handleMyClick, true);
-```
-
-Same applies to:
-
-```js
-import { addListener } from '@thednp/event-listener/src/event-listener';
-
-addListener(document, handleMyClick, true);
 ```
 
 For more advanced use, check out the [demo](https://thednp.github.io/event-listener), showcasing the **EventListener** usage with a demo component.
