@@ -2,7 +2,7 @@
 import Listener from '../../src/index';
 import clickListener from '../fixtures/clickListener';
 
-describe('TestListener Options', () => {
+describe('Test Listener Options', () => {
   before(() => {
     cy.visit('cypress/test.html')
   });
