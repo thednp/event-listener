@@ -1,4 +1,4 @@
-## EventListener
+## EventListener ![eslint version](https://img.shields.io/badge/eslint-8.23.0-brightgreen) ![vite version](https://img.shields.io/badge/vite-3.0.9-brightgreen)
 
 [![Coverage Status](https://coveralls.io/repos/github/thednp/event-listener/badge.svg)](https://coveralls.io/github/thednp/event-listener)
 [![ci](https://github.com/thednp/event-listener/actions/workflows/ci.yml/badge.svg)](https://github.com/thednp/event-listener/actions/workflows/ci.yml)
