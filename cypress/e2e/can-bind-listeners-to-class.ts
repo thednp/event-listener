@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import Listener from '../../src/index';
+import * as Listener from '../../src/index';
 import Sample from '../fixtures/sample';
 
 describe('Test Binding Class Objects to Listeners', () => {

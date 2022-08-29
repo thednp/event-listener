@@ -1,7 +1,7 @@
 {
   "name": "@thednp/event-listener",
   "author": "thednp",
-  "version": "2.0.0alpha4",
+  "version": "2.0.0alpha5",
   "description": "Modern event listener for efficient web applications based on subscribe-publish pattern.",
   "license": "MIT",
   "homepage": "https://thednp.github.io/event-listener",
@@ -41,6 +41,7 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
+  "sideEffects": false,
   "scripts": {
     "pre-test": "npm run clean-coverage",
     "test": "npm run pre-test && cypress run",
@@ -51,7 +52,8 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint:ts": "eslint -c .eslintrc.js --ext .ts src",
     "fix:ts": "eslint -c .eslintrc.js --ext .ts src --fix",
-    "build": "npm run clean && npm run lint:ts && vite build && npm run docs && dts-bundle-generator --config ./dts.config.ts",
+    "build:ts": "dts-bundle-generator --config ./dts.config.ts",
+    "build": "npm run clean && npm run lint:ts && vite build && npm run docs && npm run build:ts",
     "docs": "ncp dist/event-listener.js docs/event-listener.js && ncp dist/event-listener.js.map docs/event-listener.js.map"
   },
   "devDependencies": {
@@ -73,6 +75,7 @@
     "npm-run-all": "^4.1.5",
     "nyc": "^15.1.0",
     "rimraf": "^3.0.2",
+    "terser": "^5.15.0",
     "typescript": "^4.7.4",
     "vite": "^3.0.9"
   }

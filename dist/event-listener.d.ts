@@ -9,15 +9,24 @@
  */
 export declare type ListenerObject = Map<EventListener, AddEventListenerOptions | undefined | boolean>;
 export declare type EventsRegistry = Record<string, Map<EventTarget, ListenerObject>>;
-declare const _default: {
-	on: (element: EventTarget, eventType: string, listener: EventListener, options?: AddEventListenerOptions | undefined) => void;
-	off: (element: EventTarget, eventType: string, listener: EventListener, options?: AddEventListenerOptions | undefined) => void;
-	globalListener: (e: Event) => void;
-	registry: EventsRegistry;
-};
-
-export {
-	_default as default,
-};
+export declare const registry: EventsRegistry;
+/**
+ * The global event listener. This function must be a Function.
+ * eslint-ignore-next
+ */
+export declare const globalListener: (e: Event) => void;
+/**
+ * Register a new listener with its options and attach the `globalListener`
+ * to the target if this is the first listener.
+ */
+export declare const addListener: (element: EventTarget, eventType: string, listener: EventListener, options?: AddEventListenerOptions) => void;
+/**
+ * Remove a listener from registry and detach the `globalListener`
+ * if no listeners are found in the registry.
+ *
+ */
+export declare const removeListener: (element: EventTarget, eventType: string, listener: EventListener, options?: AddEventListenerOptions) => void;
+export declare const on: typeof addListener;
+export declare const off: typeof removeListener;
 
 export {};

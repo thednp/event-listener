@@ -36,7 +36,7 @@ npm i @thednp/event-listener
 ## Use
 
 ```js
-import Listener from '@thednp/event-listener';
+import * as Listener from '@thednp/event-listener';
 
 // execute a listener once
 Listener.on(document, 'DOMContentLoaded', () => {
@@ -83,6 +83,14 @@ Map(1) {
 // check if element has listener
 if (documentClickListeners && documentClickListeners.has(handleMyClick)) {
   // do something about it
+}
+
+// check if a listener is the one you're looking for
+if (documentClickListeners) {
+  const [eventListener] = documentClickListeners;
+  if (eventListener === handleMyClick) {
+    // do something about it
+  }
 }
 
 // get listener options

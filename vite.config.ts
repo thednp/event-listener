@@ -23,7 +23,7 @@ module.exports = defineConfig({
       formats: ['es', 'cjs', 'iife'],
       fileName: (format) => fileName[format],
     },
+    target: 'ESNext',
     sourcemap: true,
-    minify: 'esbuild',
   },
 });

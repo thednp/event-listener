@@ -1,4 +1,4 @@
-import Listener from '../../src/index';
+import * as Listener from '../../src/index';
 
 export default class Sample {
   public element: HTMLElement;

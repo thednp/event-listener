@@ -8,7 +8,7 @@
 
 type ListenerObject = Map<EventListener, AddEventListenerOptions | undefined | boolean>;
 type EventsRegistry = Record<string, Map<EventTarget, ListenerObject>>;
-const eventsRegistry: EventsRegistry = {};
+const registry: EventsRegistry = {};
 
 /**
  * The global event listener. This function must be a Function.
@@ -17,7 +17,7 @@ const eventsRegistry: EventsRegistry = {};
 const globalListener = (e: Event): void => {
   const { type, target, currentTarget } = e;
 
-  [...eventsRegistry[type]].forEach(([element, listenersMap]) => {
+  [...registry[type]].forEach(([element, listenersMap]) => {
     /* istanbul ignore else */
     if ([currentTarget, target].includes(element)) {
       [...listenersMap].forEach(([listener, options]) => {
@@ -42,10 +42,10 @@ const addListener = (
   options?: AddEventListenerOptions,
 ): void => {
   // get element listeners first
-  if (!eventsRegistry[eventType]) {
-    eventsRegistry[eventType] = new Map();
+  if (!registry[eventType]) {
+    registry[eventType] = new Map();
   }
-  const oneEventMap = eventsRegistry[eventType];
+  const oneEventMap = registry[eventType];
 
   if (!oneEventMap.has(element)) {
     oneEventMap.set(element, new Map());
@@ -76,7 +76,7 @@ const removeListener = (
   options?: AddEventListenerOptions,
 ): void => {
   // get listener first
-  const oneEventMap = eventsRegistry[eventType];
+  const oneEventMap = registry[eventType];
   const oneElementMap = oneEventMap && oneEventMap.get(element);
   const savedOptions = oneElementMap && oneElementMap.get(listener);
 
@@ -86,7 +86,7 @@ const removeListener = (
   // unsubscribe second, remove from registry
   if (oneElementMap && oneElementMap.has(listener)) oneElementMap.delete(listener);
   if (oneEventMap && (!oneElementMap || !oneElementMap.size)) oneEventMap.delete(element);
-  if (!oneEventMap || !oneEventMap.size) delete eventsRegistry[eventType];
+  if (!oneEventMap || !oneEventMap.size) delete registry[eventType];
 
   // remove listener last
   /* istanbul ignore else */
@@ -95,9 +95,8 @@ const removeListener = (
   }
 };
 
-export default {
-  on: addListener,
-  off: removeListener,
-  globalListener,
-  registry: eventsRegistry,
-};
+// alias main methods
+const on: typeof addListener = addListener;
+const off: typeof removeListener = removeListener;
+
+export { addListener, removeListener, on, off, globalListener, registry };

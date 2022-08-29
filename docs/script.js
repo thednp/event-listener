@@ -1,8 +1,8 @@
-const [btn] = document.getElementsByTagName("button");
+const [btn] = document.getElementsByTagName('button');
 
 Listener.on(
   btn,
-  "click",
+  'click',
   function removeFirstComponent(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -10,20 +10,18 @@ Listener.on(
     const instanceMap = [...compMap];
     if (compMap.size) instanceMap[0][1].dispose();
 
-    btn.innerText = compMap.size ? compMap.size + " Instances" : "No Instance";
+    btn.innerText = compMap.size ? compMap.size + ' Instances' : 'No Instance';
 
     if (!compMap.size) {
-      Listener.off(btn, "click", removeFirstComponent, false);
+      Listener.off(btn, 'click', removeFirstComponent, false);
     }
   },
-  false
+  false,
 );
 
 function initDemo() {
-  [...document.querySelectorAll("div")].forEach(
-    (div) => new DemoComponent(div)
-  );
+  [...document.querySelectorAll('div')].forEach(div => new DemoComponent(div));
 }
 
 if (document.body) initDemo();
-else Listener.on("DOMContentLoaded", initDemo, { once: true });
+else Listener.on('DOMContentLoaded', initDemo, { once: true });

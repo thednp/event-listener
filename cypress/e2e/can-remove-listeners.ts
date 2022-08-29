@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import Listener from '../../src/index';
+import * as Listener from '../../src/index';
 import clickListener from '../fixtures/clickListener';
 import scrollListener from '../fixtures/scrollListener';
 
