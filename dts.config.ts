@@ -11,6 +11,10 @@ const config = {
       filePath: "./src/index.ts",
       outFile: `./dist/${getPackageName()}.d.ts`,
       noCheck: false,
+      output: {
+        umdModuleName: 'Listener',
+        noBanner: true,
+      }
     },
   ],
 };
