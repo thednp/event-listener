@@ -12,14 +12,16 @@ const registry: EventsRegistry = {};
 
 /**
  * The global event listener. This function must be a Function.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
  * eslint-ignore-next
  */
 const globalListener = (e: Event): void => {
-  const { type, target, currentTarget } = e;
+  const { type, currentTarget } = e;
 
   [...registry[type]].forEach(([element, listenersMap]) => {
     /* istanbul ignore else */
-    if ([currentTarget, target].includes(element)) {
+    if (currentTarget === element) {
       [...listenersMap].forEach(([listener, options]) => {
         listener.apply(element, [e]);
 

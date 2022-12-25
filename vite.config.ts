@@ -17,6 +17,7 @@ const fileName = {
 module.exports = defineConfig({
   base: './',
   build: {
+    emptyOutDir: true,
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: NAME,

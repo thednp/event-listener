@@ -5,11 +5,13 @@
  * @see https://gist.github.com/shystruk/d16c0ee7ac7d194da9644e5d740c8338#file-subpub-js
  * @see https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8
  */
-export declare type ListenerObject = Map<EventListener, AddEventListenerOptions | undefined | boolean>;
-export declare type EventsRegistry = Record<string, Map<EventTarget, ListenerObject>>;
+export type ListenerObject = Map<EventListener, AddEventListenerOptions | undefined | boolean>;
+export type EventsRegistry = Record<string, Map<EventTarget, ListenerObject>>;
 export declare const registry: EventsRegistry;
 /**
  * The global event listener. This function must be a Function.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
  * eslint-ignore-next
  */
 export declare const globalListener: (e: Event) => void;

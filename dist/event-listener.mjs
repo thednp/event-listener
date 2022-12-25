@@ -1,26 +1,26 @@
-const e = {}, r = (s) => {
-  const { type: c, target: n, currentTarget: i } = s;
-  [...e[c]].forEach(([t, o]) => {
-    [i, n].includes(t) && [...o].forEach(([a, f]) => {
-      a.apply(t, [s]), typeof f == "object" && f.once && d(t, c, a, f);
+const e = {}, f = (t) => {
+  const { type: c, currentTarget: i } = t;
+  [...e[c]].forEach(([n, s]) => {
+    i === n && [...s].forEach(([o, a]) => {
+      o.apply(n, [t]), typeof a == "object" && a.once && r(n, c, o, a);
     });
   });
-}, E = (s, c, n, i) => {
+}, E = (t, c, i, n) => {
   e[c] || (e[c] = /* @__PURE__ */ new Map());
-  const t = e[c];
-  t.has(s) || t.set(s, /* @__PURE__ */ new Map());
-  const o = t.get(s), { size: a } = o;
-  o.set(n, i), a || s.addEventListener(c, r, i);
-}, d = (s, c, n, i) => {
-  const t = e[c], o = t && t.get(s), a = o && o.get(n), f = a !== void 0 ? a : i;
-  o && o.has(n) && o.delete(n), t && (!o || !o.size) && t.delete(s), (!t || !t.size) && delete e[c], (!o || !o.size) && s.removeEventListener(c, r, f);
-}, g = E, M = d;
+  const s = e[c];
+  s.has(t) || s.set(t, /* @__PURE__ */ new Map());
+  const o = s.get(t), { size: a } = o;
+  o.set(i, n), a || t.addEventListener(c, f, n);
+}, r = (t, c, i, n) => {
+  const s = e[c], o = s && s.get(t), a = o && o.get(i), d = a !== void 0 ? a : n;
+  o && o.has(i) && o.delete(i), s && (!o || !o.size) && s.delete(t), (!s || !s.size) && delete e[c], (!o || !o.size) && t.removeEventListener(c, f, d);
+}, g = E, M = r;
 export {
   E as addListener,
-  r as globalListener,
+  f as globalListener,
   M as off,
   g as on,
   e as registry,
-  d as removeListener
+  r as removeListener
 };
 //# sourceMappingURL=event-listener.mjs.map
