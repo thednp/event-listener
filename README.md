@@ -7,7 +7,6 @@
 [![jsDeliver](https://img.shields.io/jsdelivr/npm/hw/@thednp/event-listener)](https://www.jsdelivr.com/package/npm/@thednp/event-listener)
 [![cypress version](https://img.shields.io/badge/cypress-10.6.0-brightgreen)](https://cypress.io/)
 [![typescript version](https://img.shields.io/badge/typescript-4.7.4-brightgreen)](https://www.typescriptlang.org/)
-[![esbuild version](https://img.shields.io/badge/esbuild-0.14.30-brightgreen)](https://esbuild.github.io/)
 [![eslint version](https://img.shields.io/badge/eslint-8.23.0-brightgreen)](https://github.com/eslint)
 [![vite version](https://img.shields.io/badge/vite-3.0.9-brightgreen)](https://github.com/vitejs)
 
