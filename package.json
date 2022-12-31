@@ -49,8 +49,8 @@
     "cypress": "npm run pre-test && npx cypress open",
     "coverage:report": "nyc report --reporter=lcov --reporter=json --reporter=text --reporter=json-summary",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint:ts": "eslint -c .eslintrc.js --ext .ts src",
-    "fix:ts": "eslint -c .eslintrc.js --ext .ts src --fix",
+    "lint:ts": "eslint -c .eslintrc.cjs --ext .ts src",
+    "fix:ts": "eslint -c .eslintrc.cjs --ext .ts src --fix",
     "build:ts": "dts-bundle-generator --config ./dts.config.ts",
     "build": "npm run lint:ts && vite build && npm run docs && npm run build:ts",
     "docs": "ncp dist/event-listener.js docs/event-listener.js && ncp dist/event-listener.js.map docs/event-listener.js.map"
