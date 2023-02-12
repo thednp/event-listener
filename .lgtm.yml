@@ -2,7 +2,8 @@ extraction:
   typescript:
     index:
       exclude:
-        - node_modules
+        - coverage
         - cypress
-        - dist
         - docs
+        - node_modules
+        - experiments
