@@ -1,15 +1,20 @@
 {
   "name": "@thednp/event-listener",
   "author": "thednp",
-  "version": "2.0.0alpha8",
+  "version": "2.0.0",
   "description": "Modern event listener for efficient web applications based on subscribe-publish pattern.",
   "license": "MIT",
   "homepage": "https://thednp.github.io/event-listener",
-  "source": "src/index.ts",
-  "main": "dist/event-listener.js",
-  "module": "dist/event-listener.cjs",
-  "esnext": "dist/event-listener.mjs",
-  "types": "dist/event-listener.d.ts",
+  "source": "./src/index.ts",
+  "main": "./dist/event-listener.js",
+  "module": "./dist/event-listener.mjs",
+  "types": "./dist/event-listener.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/event-listener.cjs",
+      "import": "./dist/event-listener.mjs"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thednp/event-listener.git"
@@ -45,24 +50,24 @@
     "docs": "ncp dist/event-listener.js docs/event-listener.js && ncp dist/event-listener.js.map docs/event-listener.js.map"
   },
   "devDependencies": {
-    "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
     "@cypress/code-coverage": "^3.10.0",
     "@types/istanbul-lib-instrument": "^1.7.4",
-    "@typescript-eslint/eslint-plugin": "^5.47.0",
-    "@typescript-eslint/parser": "^5.47.0",
-    "cypress": "^12.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "cypress": "^12.8.1",
     "dts-bundle-generator": "^7.2.0",
-    "eslint": "^8.30.0",
-    "eslint-plugin-jsdoc": "^39.6.4",
+    "eslint": "^8.36.0",
+    "eslint-plugin-jsdoc": "^40.0.3",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^4.2.1",
     "istanbul-lib-coverage": "^3.2.0",
     "istanbul-lib-instrument": "^5.2.1",
     "ncp": "^2.0.0",
     "nyc": "^15.1.0",
-    "prettier": "^2.8.3",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.9.4",
-    "vite": "^4.0.4"
+    "prettier": "^2.8.4",
+    "rimraf": "^4.4.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.2.0"
   }
 }
