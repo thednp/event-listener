@@ -5,11 +5,11 @@
 [![NPM Version](https://img.shields.io/npm/v/@thednp/event-listener.svg)](https://www.npmjs.com/package/@thednp/event-listener)
 [![NPM Downloads](https://img.shields.io/npm/dm/@thednp/event-listener.svg)](http://npm-stat.com/charts.html?package=@thednp/event-listener)
 [![jsDeliver](https://img.shields.io/jsdelivr/npm/hw/@thednp/event-listener)](https://www.jsdelivr.com/package/npm/@thednp/event-listener)
-[![cypress version](https://img.shields.io/badge/cypress-12.8.1-brightgreen)](https://cypress.io/)
-[![typescript version](https://img.shields.io/badge/typescript-5.0.2-brightgreen)](https://www.typescriptlang.org/)
-[![eslint version](https://img.shields.io/badge/eslint-8.36.0-brightgreen)](https://github.com/eslint)
-[![vite version](https://img.shields.io/badge/vite-4.2.0-brightgreen)](https://github.com/vitejs)
-[![prettier version](https://img.shields.io/badge/prettier-2.8.4-brightgreen)](https://prettier.io/)
+[![cypress version](https://img.shields.io/badge/cypress-12.14.0-brightgreen)](https://cypress.io/)
+[![typescript version](https://img.shields.io/badge/typescript-5.1.3-brightgreen)](https://www.typescriptlang.org/)
+[![eslint version](https://img.shields.io/badge/eslint-8.42.0-brightgreen)](https://github.com/eslint)
+[![vite version](https://img.shields.io/badge/vite-4.3.9-brightgreen)](https://github.com/vitejs)
+[![prettier version](https://img.shields.io/badge/prettier-2.8.8-brightgreen)](https://prettier.io/)
 
 A TypeScript sourced event listener for efficient applications based on the [subscribe-publish](https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8) pattern, less than 900 bytes when minified and packs a surprising amount of power.
 
