@@ -5,9 +5,9 @@
 [![NPM Version](https://img.shields.io/npm/v/@thednp/event-listener.svg)](https://www.npmjs.com/package/@thednp/event-listener)
 [![NPM Downloads](https://img.shields.io/npm/dm/@thednp/event-listener.svg)](http://npm-stat.com/charts.html?package=@thednp/event-listener)
 [![jsDeliver](https://img.shields.io/jsdelivr/npm/hw/@thednp/event-listener)](https://www.jsdelivr.com/package/npm/@thednp/event-listener)
-[![cypress version](https://img.shields.io/badge/cypress-12.14.0-brightgreen)](https://cypress.io/)
-[![typescript version](https://img.shields.io/badge/typescript-5.1.3-brightgreen)](https://www.typescriptlang.org/)
-[![eslint version](https://img.shields.io/badge/eslint-8.42.0-brightgreen)](https://github.com/eslint)
+[![cypress version](https://img.shields.io/badge/cypress-12.16.0-brightgreen)](https://cypress.io/)
+[![typescript version](https://img.shields.io/badge/typescript-5.1.6-brightgreen)](https://www.typescriptlang.org/)
+[![eslint version](https://img.shields.io/badge/eslint-8.44.0-brightgreen)](https://github.com/eslint)
 [![vite version](https://img.shields.io/badge/vite-4.3.9-brightgreen)](https://github.com/vitejs)
 [![prettier version](https://img.shields.io/badge/prettier-2.8.8-brightgreen)](https://prettier.io/)
 
