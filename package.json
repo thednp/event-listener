@@ -38,16 +38,16 @@
   },
   "scripts": {
     "pre-test": "pnpm clean-coverage",
-    "prepublishOnly": "pnpm up && pnpm format && pnpm build",
+    "prepublishOnly": "pnpm up && pnpm format && pnpm build && pnpm docs",
     "test": "pnpm pre-test && cypress run",
     "clean-coverage": "rimraf coverage .nyc_output",
-    "cypress": "pnpm pre-test && npx cypress open",
+    "cypress": "pnpm pre-test && cypress open",
     "coverage:report": "nyc report --reporter=lcov --reporter=json --reporter=text --reporter=json-summary",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint:ts": "eslint -c .eslintrc.cjs --ext .ts src",
     "fix:ts": "eslint -c .eslintrc.cjs --ext .ts src --fix",
     "dts": "dts-bundle-generator --config ./dts.config.ts",
-    "build": "pnpm lint:ts && npx vite build && pnpm docs && pnpm dts",
+    "build": "pnpm lint:ts && vite build && pnpm dts",
     "docs": "ncp dist/event-listener.js docs/event-listener.js && ncp dist/event-listener.js.map docs/event-listener.js.map"
   },
   "devDependencies": {
