@@ -6,8 +6,46 @@
  * @see https://hackernoon.com/do-you-still-register-window-event-listeners-in-each-component-react-in-example-31a4b1f6f1c8
  */
 
-type ListenerObject = Map<EventListener, AddEventListenerOptions | undefined | boolean>;
-type EventsRegistry = Record<string, Map<EventTarget, ListenerObject>>;
+import {
+  SupportedEventObject,
+  SupportedEventHandler,
+  EventHandler,
+  NativeEventTypes,
+  NativeEvent,
+  ClipboardEvent,
+  CompositionEvent,
+  DragEvent,
+  FocusEvent,
+  FormEvent,
+  ChangeEvent,
+  KeyboardEvent,
+  MouseEvent,
+  TouchEvent,
+  PointerEvent,
+  UIEvent,
+  WheelEvent,
+  AnimationEvent,
+  TransitionEvent,
+  NativeEventHandler,
+  ClipboardEventHandler,
+  CompositionEventHandler,
+  DragEventHandler,
+  FocusEventHandler,
+  FormEventHandler,
+  ChangeEventHandler,
+  KeyboardEventHandler,
+  MouseEventHandler,
+  TouchEventHandler,
+  PointerEventHandler,
+  UIEventHandler,
+  WheelEventHandler,
+  AnimationEventHandler,
+  TransitionEventHandler,
+  PossibleEventTarget,
+  ListenerObject,
+  EventsRegistry,
+} from './types';
+
 const registry: EventsRegistry = {};
 
 /**
@@ -16,14 +54,14 @@ const registry: EventsRegistry = {};
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
  * eslint-ignore-next
  */
-const globalListener = (e: Event): void => {
+const globalListener = (e: NativeEvent) => {
   const { type, currentTarget } = e;
 
   [...registry[type]].forEach(([element, listenersMap]) => {
     /* istanbul ignore else */
     if (currentTarget === element) {
       [...listenersMap].forEach(([listener, options]) => {
-        listener.apply(element, [e]);
+        (listener as EventHandler<typeof e>).apply(element, [e]);
 
         if (typeof options === 'object' && options.once) {
           removeListener(element, type, listener, options);
@@ -37,17 +75,17 @@ const globalListener = (e: Event): void => {
  * Register a new listener with its options and attach the `globalListener`
  * to the target if this is the first listener.
  */
-const addListener = (
-  element: EventTarget,
-  eventType: string,
-  listener: EventListener,
+const addListener = <T extends PossibleEventTarget>(
+  element: T,
+  eventType: NativeEventTypes,
+  listener: SupportedEventHandler<T>,
   options?: AddEventListenerOptions,
 ): void => {
   // get element listeners first
   if (!registry[eventType]) {
     registry[eventType] = new Map();
   }
-  const oneEventMap = registry[eventType];
+  const oneEventMap = registry[eventType] as unknown as Map<T, ListenerObject<T, SupportedEventHandler<T>>>;
 
   if (!oneEventMap.has(element)) {
     oneEventMap.set(element, new Map());
@@ -58,11 +96,11 @@ const addListener = (
   const { size } = oneElementMap;
 
   // register listener with its options
-  oneElementMap.set(listener, options);
+  oneElementMap.set(listener as SupportedEventHandler<PossibleEventTarget>, options);
 
   // add listener last
   if (!size) {
-    element.addEventListener(eventType, globalListener, options);
+    element.addEventListener(eventType, globalListener as unknown as EventListenerObject, options);
   }
 };
 
@@ -71,10 +109,10 @@ const addListener = (
  * if no listeners are found in the registry.
  *
  */
-const removeListener = (
-  element: EventTarget,
-  eventType: string,
-  listener: EventListener,
+const removeListener = <T extends PossibleEventTarget>(
+  element: T,
+  eventType: NativeEventTypes,
+  listener: SupportedEventHandler<PossibleEventTarget>,
   options?: AddEventListenerOptions,
 ): void => {
   // get listener first
@@ -93,7 +131,7 @@ const removeListener = (
   // remove listener last
   /* istanbul ignore else */
   if (!oneElementMap || !oneElementMap.size) {
-    element.removeEventListener(eventType, globalListener, eventOptions);
+    element.removeEventListener(eventType, globalListener as unknown as EventListenerObject, eventOptions);
   }
 };
 
@@ -102,3 +140,42 @@ const on: typeof addListener = addListener;
 const off: typeof removeListener = removeListener;
 
 export { addListener, removeListener, on, off, globalListener, registry };
+export type {
+  SupportedEventObject,
+  SupportedEventHandler,
+  EventHandler,
+  NativeEventTypes,
+  NativeEvent,
+  ClipboardEvent,
+  CompositionEvent,
+  DragEvent,
+  FocusEvent,
+  FormEvent,
+  ChangeEvent,
+  KeyboardEvent,
+  MouseEvent,
+  TouchEvent,
+  PointerEvent,
+  UIEvent,
+  WheelEvent,
+  AnimationEvent,
+  TransitionEvent,
+  NativeEventHandler,
+  ClipboardEventHandler,
+  CompositionEventHandler,
+  DragEventHandler,
+  FocusEventHandler,
+  FormEventHandler,
+  ChangeEventHandler,
+  KeyboardEventHandler,
+  MouseEventHandler,
+  TouchEventHandler,
+  PointerEventHandler,
+  UIEventHandler,
+  WheelEventHandler,
+  AnimationEventHandler,
+  TransitionEventHandler,
+  PossibleEventTarget,
+  ListenerObject,
+  EventsRegistry,
+};

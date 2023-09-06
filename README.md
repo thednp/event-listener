@@ -15,7 +15,7 @@ A TypeScript sourced event listener for efficient applications based on the [sub
 
 ## Features
 
-- **EventListener** is TypeScript sourced;
+- **EventListener** is TypeScript sourced, with some types addapted from React;
 - **EventListener** makes use of the native [Map](https://caniuse.com/mdn-javascript_builtins_map) to subscribe/register or unsubscribe/remove listeners, which is perfect since we need to make sure the exact listeners are added/removed; this completely invalidates the need to [deconstruct function objects](https://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-deep-clone-an-object-in-javascript) for comparison's sake to make sure event listeners are properly handled;
 - **EventListener** allows you to register multiple listeners for the same target, even of the same type, but always uses a single `globalListener` to call them all at once when event is triggered;
 - **EventListener** "should" be able to manage event options, especially `once`, meaning that when the option is `true`, the listener is automatically un-subscribed and detached from target;
@@ -46,7 +46,7 @@ Listener.on(document, 'DOMContentLoaded', () => {
 );
 
 // add a listener with `useCapture: false`
-function handleMyClick(e) {
+function handleMyClick(e: Listener.NativeEvent) {
   if (e.target.tagName === 'button') {
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -101,17 +101,22 @@ const myListenerOptions = documentClickListeners && documentClickListeners.get(h
 
 ## Advanced Use
 
-You can also make use of "tree shaking" to import only the module you want, for instance:
+You can also make use of the types for more consistent code safety:
 
 ```js
-import { on } from '@thednp/event-listener';
+import { on, FocusEventHandler } from '@thednp/event-listener';
 
-on(document, handleMyClick, true);
+const handleMyFocus: FocusEventHandler<HTMLInputElement> = (e) => {
+  console.log(e)
+}
+
+const myInput = document.querySelector('input') || document.createElement('input');
+on(myInput, 'focus', handleMyFocus);
 ```
 
 For more advanced use, check out the [demo](https://thednp.github.io/event-listener), showcasing the **EventListener** usage with a demo component.
 
-## Run the tests suite (new)
+## Run the tests suite
 
 - [Download](https://github.com/thednp/event-listener/archive/refs/heads/master.zip) the package from Github;
 - unpack/unzip and open the folder with your editor;
