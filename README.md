@@ -101,7 +101,7 @@ const myListenerOptions = documentClickListeners && documentClickListeners.get(h
 
 ## Advanced Use
 
-You can also make use of the types for more consistent code safety:
+You can also make use of the types for more consistent code:
 
 ```js
 import { on, FocusEventHandler } from '@thednp/event-listener';
