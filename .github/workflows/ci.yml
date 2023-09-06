@@ -20,7 +20,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Install Cypress
-        run: cypress install
+        run: npx cypress install
 
       - name: Build
         run: pnpm build # includes lint
