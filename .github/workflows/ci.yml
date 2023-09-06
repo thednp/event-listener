@@ -8,13 +8,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2.2.2
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm install
-      - run: npm run lint:ts && npx vite build && npm run docs && npm run dts # includes lint
-      - run: npm run test
+          cache: pnpm
+      - run: pnpm install
+      - run: pnpm build # includes lint
+      - run: pnpm run test
 
       - name: Upload coverage report on Node 18 to coveralls.io...
         uses: coverallsapp/github-action@v1.1.2
