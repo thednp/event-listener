@@ -11,13 +11,13 @@ jobs:
       - uses: pnpm/action-setup@v2.2.2
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: 18
           cache: pnpm
-      - run: pnpm install
+      - run: pnpm install --no-frozen-lockfile
       - run: pnpm build # includes lint
-      - run: pnpm run test
+      - run: pnpm test
 
       - name: Upload coverage report on Node 18 to coveralls.io...
         uses: coverallsapp/github-action@v1.1.2
