@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 18
       - run: npm install
-      - run: npm run lint:ts && vite build && npm run docs && npm run dts # includes lint
+      - run: npm run lint:ts && npx vite build && npm run docs && npm run dts # includes lint
       - run: npm run test
 
       - name: Upload coverage report on Node 18 to coveralls.io...
