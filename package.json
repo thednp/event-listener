@@ -47,7 +47,7 @@
     "lint:ts": "eslint -c .eslintrc.cjs --ext .ts src",
     "fix:ts": "eslint -c .eslintrc.cjs --ext .ts src --fix",
     "dts": "dts-bundle-generator --config ./dts.config.ts",
-    "build": "pnpm lint:ts && vite build && pnpm docs && pnpm dts",
+    "build": "pnpm lint:ts && npx vite build && pnpm docs && pnpm dts",
     "docs": "ncp dist/event-listener.js docs/event-listener.js && ncp dist/event-listener.js.map docs/event-listener.js.map"
   },
   "devDependencies": {
