@@ -18,9 +18,9 @@ export interface AbstractView {
 	styleMedia: StyleMedia;
 	document: Document;
 }
-export interface BaseEvent<E = unknown, C = unknown, T = unknown> {
-	nativeEvent: Event & E;
-	currentTarget: C & EventTarget;
+export interface BaseEvent<E = Event, C = unknown, T = unknown> {
+	nativeEvent: E;
+	currentTarget: C | null;
 	target: T & EventTarget;
 	bubbles: boolean;
 	cancelable: boolean;
@@ -33,7 +33,7 @@ export interface BaseEvent<E = unknown, C = unknown, T = unknown> {
 	isPropagationStopped(): boolean;
 	persist(): void;
 	timeStamp: number;
-	type: string & NativeEventTypes;
+	type: string;
 }
 /**
  * currentTarget - a reference to the element on which the event listener is registered.
@@ -42,9 +42,9 @@ export interface BaseEvent<E = unknown, C = unknown, T = unknown> {
  * This might be a child element to the element on which the event listener is registered.
  * If you thought this should be `EventTarget & T`, see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682
  */
-export type NativeEvent<T = PossibleEventTarget, E = Event> = BaseEvent<E, EventTarget & T, EventTarget>;
+export type NativeEvent<T = Element, E = Event> = BaseEvent<E, T, T>;
 export interface ClipboardEvent<T = Element> extends NativeEvent<T, NativeClipboardEvent> {
-	clipboardData?: DataTransfer;
+	clipboardData: DataTransfer;
 }
 export interface CompositionEvent<T = Element> extends NativeEvent<T, NativeCompositionEvent> {
 	data: string;
@@ -152,28 +152,25 @@ export interface TransitionEvent<T = Element> extends NativeEvent<T, NativeTrans
 	propertyName: string;
 	pseudoElement: string;
 }
-export type EventHandler<E extends NativeEvent<unknown, unknown>> = (event: E) => void;
-export type NativeEventHandler<T = Element> = EventHandler<NativeEvent<T>>;
-export type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent<T>>;
-export type CompositionEventHandler<T = Element> = EventHandler<CompositionEvent<T>>;
-export type DragEventHandler<T = Element> = EventHandler<DragEvent<T>>;
-export type FocusEventHandler<T = Element> = EventHandler<FocusEvent<T>>;
-export type FormEventHandler<T = Element> = EventHandler<FormEvent<T>>;
-export type ChangeEventHandler<T = Element> = EventHandler<ChangeEvent<T>>;
-export type KeyboardEventHandler<T = Element> = EventHandler<KeyboardEvent<T>>;
-export type MouseEventHandler<T = Element> = EventHandler<MouseEvent<T>>;
-export type TouchEventHandler<T = Element> = EventHandler<TouchEvent<T>>;
-export type PointerEventHandler<T = Element> = EventHandler<PointerEvent<T>>;
-export type UIEventHandler<T = Element> = EventHandler<UIEvent<T>>;
-export type WheelEventHandler<T = Element> = EventHandler<WheelEvent<T>>;
-export type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent<T>>;
-export type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent<T>>;
-export type SupportedEventObject<T> = NativeEvent<T> | ClipboardEvent<T> | CompositionEvent<T> | DragEvent<T> | FocusEvent<T> | FormEvent<T> | ChangeEvent<T> | KeyboardEvent<T> | MouseEvent<T> | TouchEvent<T> | PointerEvent<T> | UIEvent<T> | WheelEvent<T> | AnimationEvent<T> | TransitionEvent<T>;
-export type SupportedEventHandler<T> = NativeEventHandler<T> | ClipboardEventHandler<T> | CompositionEventHandler<T> | DragEventHandler<T> | FocusEventHandler<T> | FormEventHandler<T> | ChangeEventHandler<T> | KeyboardEventHandler<T> | MouseEventHandler<T> | TouchEventHandler<T> | PointerEventHandler<T> | UIEventHandler<T> | WheelEventHandler<T> | AnimationEventHandler<T> | TransitionEventHandler<T>;
-export type NativeEventTypes = "DOMContentLoaded" | "DOMMouseScroll" | "abort" | "beforeunload" | "blur" | "change" | "click" | "contextmenu" | "dblclick" | "error" | "focus" | "focusin" | "focusout" | "gesturechange" | "gestureend" | "gesturestart" | "hover" | "keydown" | "keypress" | "keyup" | "load" | "mousedown" | "mouseenter" | "mousein" | "mouseleave" | "mousemove" | "mouseout" | "mouseover" | "mouseup" | "mousewheel" | "move" | "orientationchange" | "pointercancel" | "pointerdown" | "pointerleave" | "pointermove" | "pointerup" | "readystatechange" | "reset" | "resize" | "scroll" | "select" | "selectend" | "selectstart" | "submit" | "touchcancel" | "touchend" | "touchmove" | "touchstart" | "unload";
+export type EventHandler<T = Element, E = Event | NativeEvent<T>> = (event: E) => void;
+export type NativeEventHandler<T = Element> = EventHandler<T, NativeEvent<T>>;
+export type ClipboardEventHandler<T = Element> = EventHandler<T, ClipboardEvent<T>>;
+export type CompositionEventHandler<T = Element> = EventHandler<T, CompositionEvent<T>>;
+export type DragEventHandler<T = Element> = EventHandler<T, DragEvent<T>>;
+export type FocusEventHandler<T = Element> = EventHandler<T, FocusEvent<T>>;
+export type FormEventHandler<T = Element> = EventHandler<T, FormEvent<T>>;
+export type ChangeEventHandler<T = Element> = EventHandler<T, ChangeEvent<T>>;
+export type KeyboardEventHandler<T = Element> = EventHandler<T, KeyboardEvent<T>>;
+export type MouseEventHandler<T = Element> = EventHandler<T, MouseEvent<T>>;
+export type TouchEventHandler<T = Element> = EventHandler<T, TouchEvent<T>>;
+export type PointerEventHandler<T = Element> = EventHandler<T, PointerEvent<T>>;
+export type UIEventHandler<T = Element> = EventHandler<T, UIEvent<T>>;
+export type WheelEventHandler<T = Element> = EventHandler<T, WheelEvent<T>>;
+export type AnimationEventHandler<T = Element> = EventHandler<T, AnimationEvent<T>>;
+export type TransitionEventHandler<T = Element> = EventHandler<T, TransitionEvent<T>>;
 export type PossibleEventTarget = EventTarget & (Element | Document | Window);
-export type ListenerObject<T = PossibleEventTarget, H = SupportedEventHandler<T>> = Map<H, AddEventListenerOptions | undefined | boolean>;
-export type EventsRegistry<T = PossibleEventTarget> = Record<string, Map<T, ListenerObject<T>>>;
+export type EventRegistryEntry<T = EventTarget, H = NativeEventHandler<T>> = Map<H, AddEventListenerOptions | undefined | boolean>;
+export type EventsRegistry = Record<string, Map<PossibleEventTarget, EventRegistryEntry<PossibleEventTarget>>>;
 export declare const registry: EventsRegistry;
 /**
  * The global event listener. This function must be a Function.
@@ -186,13 +183,13 @@ export declare const globalListener: (e: NativeEvent) => void;
  * Register a new listener with its options and attach the `globalListener`
  * to the target if this is the first listener.
  */
-export declare const addListener: <T extends PossibleEventTarget>(element: T, eventType: NativeEventTypes, listener: SupportedEventHandler<T>, options?: AddEventListenerOptions) => void;
+export declare const addListener: <T = Element, L = EventListener>(element: T, eventType: string, listener: L, options?: AddEventListenerOptions) => void;
 /**
  * Remove a listener from registry and detach the `globalListener`
  * if no listeners are found in the registry.
  *
  */
-export declare const removeListener: <T extends PossibleEventTarget>(element: T, eventType: NativeEventTypes, listener: SupportedEventHandler<PossibleEventTarget>, options?: AddEventListenerOptions) => void;
+export declare const removeListener: <T = Element, L = EventListener>(element: T, eventType: string, listener: L, options?: AddEventListenerOptions) => void;
 export declare const on: typeof addListener;
 export declare const off: typeof removeListener;
 

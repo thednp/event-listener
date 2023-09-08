@@ -13,7 +13,11 @@ const e = {}, f = (t) => {
   o.set(i, n), a || t.addEventListener(c, f, n);
 }, r = (t, c, i, n) => {
   const s = e[c], o = s && s.get(t), a = o && o.get(i), d = a !== void 0 ? a : n;
-  o && o.has(i) && o.delete(i), s && (!o || !o.size) && s.delete(t), (!s || !s.size) && delete e[c], (!o || !o.size) && t.removeEventListener(c, f, d);
+  o && o.has(i) && o.delete(i), s && (!o || !o.size) && s.delete(t), (!s || !s.size) && delete e[c], (!o || !o.size) && t.removeEventListener(
+    c,
+    f,
+    d
+  );
 }, g = E, M = r;
 export {
   E as addListener,

@@ -1,7 +1,7 @@
 {
   "name": "@thednp/event-listener",
   "author": "thednp",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Modern event listener for efficient web applications based on subscribe-publish pattern.",
   "license": "MIT",
   "homepage": "https://thednp.github.io/event-listener",
@@ -44,10 +44,11 @@
     "cypress": "pnpm pre-test && cypress open",
     "coverage:report": "nyc report --reporter=lcov --reporter=json --reporter=text --reporter=json-summary",
     "format": "prettier --write \"src/**/*.ts\"",
+    "check:ts": "tsc --noEmit",
     "lint:ts": "eslint -c .eslintrc.cjs --ext .ts src",
     "fix:ts": "eslint -c .eslintrc.cjs --ext .ts src --fix",
     "dts": "dts-bundle-generator --config ./dts.config.ts",
-    "build": "pnpm lint:ts && vite build && pnpm dts",
+    "build": "pnpm check:ts && pnpm lint:ts && vite build && pnpm dts",
     "docs": "ncp dist/event-listener.js docs/event-listener.js && ncp dist/event-listener.js.map docs/event-listener.js.map"
   },
   "devDependencies": {

@@ -7,10 +7,6 @@
  */
 
 import {
-  SupportedEventObject,
-  SupportedEventHandler,
-  EventHandler,
-  NativeEventTypes,
   NativeEvent,
   ClipboardEvent,
   CompositionEvent,
@@ -42,7 +38,7 @@ import {
   AnimationEventHandler,
   TransitionEventHandler,
   PossibleEventTarget,
-  ListenerObject,
+  EventRegistryEntry,
   EventsRegistry,
 } from './types';
 
@@ -61,7 +57,7 @@ const globalListener = (e: NativeEvent) => {
     /* istanbul ignore else */
     if (currentTarget === element) {
       [...listenersMap].forEach(([listener, options]) => {
-        (listener as EventHandler<typeof e>).apply(element, [e]);
+        listener.apply(element, [e]);
 
         if (typeof options === 'object' && options.once) {
           removeListener(element, type, listener, options);
@@ -75,32 +71,32 @@ const globalListener = (e: NativeEvent) => {
  * Register a new listener with its options and attach the `globalListener`
  * to the target if this is the first listener.
  */
-const addListener = <T extends PossibleEventTarget>(
+const addListener = <T = Element, L = EventListener>(
   element: T,
-  eventType: NativeEventTypes,
-  listener: SupportedEventHandler<T>,
+  eventType: string,
+  listener: L,
   options?: AddEventListenerOptions,
 ): void => {
   // get element listeners first
   if (!registry[eventType]) {
     registry[eventType] = new Map();
   }
-  const oneEventMap = registry[eventType] as unknown as Map<T, ListenerObject<T, SupportedEventHandler<T>>>;
+  const oneEventMap = registry[eventType];
 
-  if (!oneEventMap.has(element)) {
-    oneEventMap.set(element, new Map());
+  if (!oneEventMap.has(element as PossibleEventTarget)) {
+    oneEventMap.set(element as PossibleEventTarget, new Map());
   }
-  const oneElementMap = oneEventMap.get(element) as ListenerObject;
+  const oneElementMap = oneEventMap.get(element as PossibleEventTarget) as EventRegistryEntry<T, L>;
 
   // get listeners size
   const { size } = oneElementMap;
 
   // register listener with its options
-  oneElementMap.set(listener as SupportedEventHandler<PossibleEventTarget>, options);
+  oneElementMap.set(listener, options);
 
   // add listener last
   if (!size) {
-    element.addEventListener(eventType, globalListener as unknown as EventListenerObject, options);
+    (element as PossibleEventTarget).addEventListener(eventType, globalListener as unknown as EventListener, options);
   }
 };
 
@@ -109,29 +105,34 @@ const addListener = <T extends PossibleEventTarget>(
  * if no listeners are found in the registry.
  *
  */
-const removeListener = <T extends PossibleEventTarget>(
+const removeListener = <T = Element, L = EventListener>(
   element: T,
-  eventType: NativeEventTypes,
-  listener: SupportedEventHandler<PossibleEventTarget>,
+  eventType: string,
+  listener: L,
   options?: AddEventListenerOptions,
 ): void => {
   // get listener first
   const oneEventMap = registry[eventType];
-  const oneElementMap = oneEventMap && oneEventMap.get(element);
-  const savedOptions = oneElementMap && oneElementMap.get(listener);
+  const oneElementMap = oneEventMap && (oneEventMap.get(element as PossibleEventTarget) as EventRegistryEntry<T>);
+  const savedOptions = oneElementMap && oneElementMap.get(listener as NativeEventHandler<typeof element>);
 
   // also recover initial options
   const eventOptions = savedOptions !== undefined ? savedOptions : options;
 
   // unsubscribe second, remove from registry
-  if (oneElementMap && oneElementMap.has(listener)) oneElementMap.delete(listener);
-  if (oneEventMap && (!oneElementMap || !oneElementMap.size)) oneEventMap.delete(element);
+  if (oneElementMap && oneElementMap.has(listener as NativeEventHandler<typeof element>))
+    oneElementMap.delete(listener as NativeEventHandler<typeof element>);
+  if (oneEventMap && (!oneElementMap || !oneElementMap.size)) oneEventMap.delete(element as PossibleEventTarget);
   if (!oneEventMap || !oneEventMap.size) delete registry[eventType];
 
   // remove listener last
   /* istanbul ignore else */
   if (!oneElementMap || !oneElementMap.size) {
-    element.removeEventListener(eventType, globalListener as unknown as EventListenerObject, eventOptions);
+    (element as PossibleEventTarget).removeEventListener(
+      eventType,
+      globalListener as unknown as EventListener,
+      eventOptions,
+    );
   }
 };
 
@@ -141,10 +142,6 @@ const off: typeof removeListener = removeListener;
 
 export { addListener, removeListener, on, off, globalListener, registry };
 export type {
-  SupportedEventObject,
-  SupportedEventHandler,
-  EventHandler,
-  NativeEventTypes,
   NativeEvent,
   ClipboardEvent,
   CompositionEvent,
@@ -176,6 +173,6 @@ export type {
   AnimationEventHandler,
   TransitionEventHandler,
   PossibleEventTarget,
-  ListenerObject,
+  EventRegistryEntry,
   EventsRegistry,
 };
