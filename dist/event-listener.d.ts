@@ -2,18 +2,18 @@
  * Type definitions addapted from React 18.2
  * Project: https://react.dev/
  */
-export type NativeAnimationEvent = AnimationEvent;
-export type NativeClipboardEvent = ClipboardEvent;
-export type NativeCompositionEvent = CompositionEvent;
-export type NativeDragEvent = DragEvent;
-export type NativeFocusEvent = FocusEvent;
-export type NativeKeyboardEvent = KeyboardEvent;
-export type NativeMouseEvent = MouseEvent;
-export type NativeTouchEvent = TouchEvent;
-export type NativePointerEvent = PointerEvent;
-export type NativeTransitionEvent = TransitionEvent;
-export type NativeUIEvent = UIEvent;
-export type NativeWheelEvent = WheelEvent;
+export type NativeAnimationEvent = AnimationEvent$1;
+export type NativeClipboardEvent = ClipboardEvent$1;
+export type NativeCompositionEvent = CompositionEvent$1;
+export type NativeDragEvent = DragEvent$1;
+export type NativeFocusEvent = FocusEvent$1;
+export type NativeKeyboardEvent = KeyboardEvent$1;
+export type NativeMouseEvent = MouseEvent$1;
+export type NativeTouchEvent = TouchEvent$1;
+export type NativePointerEvent = PointerEvent$1;
+export type NativeTransitionEvent = TransitionEvent$1;
+export type NativeUIEvent = UIEvent$1;
+export type NativeWheelEvent = WheelEvent$1;
 export interface AbstractView {
 	styleMedia: StyleMedia;
 	document: Document;
@@ -43,16 +43,16 @@ export interface BaseEvent<E = Event, C = unknown, T = unknown> {
  * If you thought this should be `EventTarget & T`, see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682
  */
 export type NativeEvent<T = Element, E = Event> = BaseEvent<E, T, T>;
-export interface ClipboardEvent<T = Element> extends NativeEvent<T, NativeClipboardEvent> {
+interface ClipboardEvent$1<T = Element> extends NativeEvent<T, NativeClipboardEvent> {
 	clipboardData: DataTransfer;
 }
-export interface CompositionEvent<T = Element> extends NativeEvent<T, NativeCompositionEvent> {
+interface CompositionEvent$1<T = Element> extends NativeEvent<T, NativeCompositionEvent> {
 	data: string;
 }
-export interface DragEvent<T = Element> extends MouseEvent<T, NativeDragEvent> {
+interface DragEvent$1<T = Element> extends MouseEvent$1<T, NativeDragEvent> {
 	dataTransfer: DataTransfer;
 }
-export interface PointerEvent<T = Element> extends MouseEvent<T, NativePointerEvent> {
+interface PointerEvent$1<T = Element> extends MouseEvent$1<T, NativePointerEvent> {
 	pointerId: number;
 	pressure: number;
 	tangentialPressure: number;
@@ -64,7 +64,7 @@ export interface PointerEvent<T = Element> extends MouseEvent<T, NativePointerEv
 	pointerType: "mouse" | "pen" | "touch";
 	isPrimary: boolean;
 }
-export interface FocusEvent<T = Element, R = Element> extends NativeEvent<T, NativeFocusEvent> {
+interface FocusEvent$1<T = Element, R = Element> extends NativeEvent<T, NativeFocusEvent> {
 	relatedTarget: (EventTarget & R) | null;
 	target: EventTarget & T;
 }
@@ -74,7 +74,7 @@ export interface ChangeEvent<T = FormControl> extends FormEvent<T> {
 	target: EventTarget & T;
 }
 export type ModifierKey = "Alt" | "AltGraph" | "CapsLock" | "Control" | "Fn" | "FnLock" | "Hyper" | "Meta" | "NumLock" | "ScrollLock" | "Shift" | "Super" | "Symbol" | "SymbolLock";
-export interface KeyboardEvent<T = Element> extends UIEvent<T, NativeKeyboardEvent> {
+interface KeyboardEvent$1<T = Element> extends UIEvent$1<T, NativeKeyboardEvent> {
 	altKey: boolean;
 	/** @deprecated */
 	charCode: number;
@@ -98,7 +98,7 @@ export interface KeyboardEvent<T = Element> extends UIEvent<T, NativeKeyboardEve
 	/** @deprecated */
 	which: number;
 }
-export interface MouseEvent<T = Element, E = NativeMouseEvent> extends UIEvent<T, E> {
+interface MouseEvent$1<T = Element, E = NativeMouseEvent> extends UIEvent$1<T, E> {
 	altKey: boolean;
 	button: number;
 	buttons: number;
@@ -119,7 +119,7 @@ export interface MouseEvent<T = Element, E = NativeMouseEvent> extends UIEvent<T
 	screenY: number;
 	shiftKey: boolean;
 }
-export interface TouchEvent<T = Element> extends UIEvent<T, NativeTouchEvent> {
+interface TouchEvent$1<T = Element> extends UIEvent$1<T, NativeTouchEvent> {
 	altKey: boolean;
 	changedTouches: TouchList;
 	ctrlKey: boolean;
@@ -132,42 +132,42 @@ export interface TouchEvent<T = Element> extends UIEvent<T, NativeTouchEvent> {
 	targetTouches: TouchList;
 	touches: TouchList;
 }
-export interface UIEvent<T = Element, E = NativeUIEvent> extends NativeEvent<T, E> {
+interface UIEvent$1<T = Element, E = NativeUIEvent> extends NativeEvent<T, E> {
 	detail: number;
 	view: AbstractView;
 }
-export interface WheelEvent<T = Element> extends MouseEvent<T, NativeWheelEvent> {
+interface WheelEvent$1<T = Element> extends MouseEvent$1<T, NativeWheelEvent> {
 	deltaMode: number;
 	deltaX: number;
 	deltaY: number;
 	deltaZ: number;
 }
-export interface AnimationEvent<T = Element> extends NativeEvent<T, NativeAnimationEvent> {
+interface AnimationEvent$1<T = Element> extends NativeEvent<T, NativeAnimationEvent> {
 	animationName: string;
 	elapsedTime: number;
 	pseudoElement: string;
 }
-export interface TransitionEvent<T = Element> extends NativeEvent<T, NativeTransitionEvent> {
+interface TransitionEvent$1<T = Element> extends NativeEvent<T, NativeTransitionEvent> {
 	elapsedTime: number;
 	propertyName: string;
 	pseudoElement: string;
 }
 export type EventHandler<T = Element, E = Event | NativeEvent<T>> = (event: E) => void;
 export type NativeEventHandler<T = Element> = EventHandler<T, NativeEvent<T>>;
-export type ClipboardEventHandler<T = Element> = EventHandler<T, ClipboardEvent<T>>;
-export type CompositionEventHandler<T = Element> = EventHandler<T, CompositionEvent<T>>;
-export type DragEventHandler<T = Element> = EventHandler<T, DragEvent<T>>;
-export type FocusEventHandler<T = Element> = EventHandler<T, FocusEvent<T>>;
+export type ClipboardEventHandler<T = Element> = EventHandler<T, ClipboardEvent$1<T>>;
+export type CompositionEventHandler<T = Element> = EventHandler<T, CompositionEvent$1<T>>;
+export type DragEventHandler<T = Element> = EventHandler<T, DragEvent$1<T>>;
+export type FocusEventHandler<T = Element> = EventHandler<T, FocusEvent$1<T>>;
 export type FormEventHandler<T = Element> = EventHandler<T, FormEvent<T>>;
 export type ChangeEventHandler<T = Element> = EventHandler<T, ChangeEvent<T>>;
-export type KeyboardEventHandler<T = Element> = EventHandler<T, KeyboardEvent<T>>;
-export type MouseEventHandler<T = Element> = EventHandler<T, MouseEvent<T>>;
-export type TouchEventHandler<T = Element> = EventHandler<T, TouchEvent<T>>;
-export type PointerEventHandler<T = Element> = EventHandler<T, PointerEvent<T>>;
-export type UIEventHandler<T = Element> = EventHandler<T, UIEvent<T>>;
-export type WheelEventHandler<T = Element> = EventHandler<T, WheelEvent<T>>;
-export type AnimationEventHandler<T = Element> = EventHandler<T, AnimationEvent<T>>;
-export type TransitionEventHandler<T = Element> = EventHandler<T, TransitionEvent<T>>;
+export type KeyboardEventHandler<T = Element> = EventHandler<T, KeyboardEvent$1<T>>;
+export type MouseEventHandler<T = Element> = EventHandler<T, MouseEvent$1<T>>;
+export type TouchEventHandler<T = Element> = EventHandler<T, TouchEvent$1<T>>;
+export type PointerEventHandler<T = Element> = EventHandler<T, PointerEvent$1<T>>;
+export type UIEventHandler<T = Element> = EventHandler<T, UIEvent$1<T>>;
+export type WheelEventHandler<T = Element> = EventHandler<T, WheelEvent$1<T>>;
+export type AnimationEventHandler<T = Element> = EventHandler<T, AnimationEvent$1<T>>;
+export type TransitionEventHandler<T = Element> = EventHandler<T, TransitionEvent$1<T>>;
 export type PossibleEventTarget = EventTarget & (Element | Document | Window);
 export type EventRegistryEntry<T = EventTarget, H = NativeEventHandler<T>> = Map<H, AddEventListenerOptions | undefined | boolean>;
 export type EventsRegistry = Record<string, Map<PossibleEventTarget, EventRegistryEntry<PossibleEventTarget>>>;
@@ -192,6 +192,21 @@ export declare const addListener: <T = Element, L = EventListener>(element: T, e
 export declare const removeListener: <T = Element, L = EventListener>(element: T, eventType: string, listener: L, options?: AddEventListenerOptions) => void;
 export declare const on: typeof addListener;
 export declare const off: typeof removeListener;
+
+export {
+	AnimationEvent$1 as AnimationEvent,
+	ClipboardEvent$1 as ClipboardEvent,
+	CompositionEvent$1 as CompositionEvent,
+	DragEvent$1 as DragEvent,
+	FocusEvent$1 as FocusEvent,
+	KeyboardEvent$1 as KeyboardEvent,
+	MouseEvent$1 as MouseEvent,
+	PointerEvent$1 as PointerEvent,
+	TouchEvent$1 as TouchEvent,
+	TransitionEvent$1 as TransitionEvent,
+	UIEvent$1 as UIEvent,
+	WheelEvent$1 as WheelEvent,
+};
 
 export as namespace Listener;
 
