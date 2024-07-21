@@ -38,7 +38,7 @@
   },
   "scripts": {
     "pre-test": "pnpm clean-coverage",
-    "badges": "npx -p dependency-version-badge update-badge typescript prettier cypress eslint vite",
+    "badges": "npx -p dependency-version-badge update-badge eslint typescript vite prettier cypress",
     "prepublishOnly": "pnpm up && pnpm format && pnpm build && pnpm docs && pnpm badges",
     "test": "pnpm pre-test && cypress run",
     "clean-coverage": "rimraf coverage .nyc_output",
