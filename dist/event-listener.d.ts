@@ -1,24 +1,20 @@
-/**
- * Type definitions addapted from React 18.2
- * Project: https://react.dev/
- */
-export type NativeAnimationEvent = AnimationEvent$1;
-export type NativeClipboardEvent = ClipboardEvent$1;
-export type NativeCompositionEvent = CompositionEvent$1;
-export type NativeDragEvent = DragEvent$1;
-export type NativeFocusEvent = FocusEvent$1;
-export type NativeKeyboardEvent = KeyboardEvent$1;
-export type NativeMouseEvent = MouseEvent$1;
-export type NativeTouchEvent = TouchEvent$1;
-export type NativePointerEvent = PointerEvent$1;
-export type NativeTransitionEvent = TransitionEvent$1;
-export type NativeUIEvent = UIEvent$1;
-export type NativeWheelEvent = WheelEvent$1;
-export interface AbstractView {
+type NativeAnimationEvent = AnimationEvent$1;
+type NativeClipboardEvent = ClipboardEvent$1;
+type NativeCompositionEvent = CompositionEvent$1;
+type NativeDragEvent = DragEvent$1;
+type NativeFocusEvent = FocusEvent$1;
+type NativeKeyboardEvent = KeyboardEvent$1;
+type NativeMouseEvent = MouseEvent$1;
+type NativeTouchEvent = TouchEvent$1;
+type NativePointerEvent = PointerEvent$1;
+type NativeTransitionEvent = TransitionEvent$1;
+type NativeUIEvent = UIEvent$1;
+type NativeWheelEvent = WheelEvent$1;
+interface AbstractView {
 	styleMedia: StyleMedia;
 	document: Document;
 }
-export interface BaseEvent<E = Event, C = unknown, T = unknown> {
+interface BaseEvent<E = Event, C = unknown, T = unknown> {
 	nativeEvent: E;
 	currentTarget: C | null;
 	target: T & EventTarget;
@@ -68,12 +64,12 @@ interface FocusEvent$1<T = Element, R = Element> extends NativeEvent<T, NativeFo
 	relatedTarget: (EventTarget & R) | null;
 	target: EventTarget & T;
 }
-export type FormControl = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+type FormControl = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 export type FormEvent<T = FormControl> = NativeEvent<T>;
 export interface ChangeEvent<T = FormControl> extends FormEvent<T> {
 	target: EventTarget & T;
 }
-export type ModifierKey = "Alt" | "AltGraph" | "CapsLock" | "Control" | "Fn" | "FnLock" | "Hyper" | "Meta" | "NumLock" | "ScrollLock" | "Shift" | "Super" | "Symbol" | "SymbolLock";
+type ModifierKey = "Alt" | "AltGraph" | "CapsLock" | "Control" | "Fn" | "FnLock" | "Hyper" | "Meta" | "NumLock" | "ScrollLock" | "Shift" | "Super" | "Symbol" | "SymbolLock";
 interface KeyboardEvent$1<T = Element> extends UIEvent$1<T, NativeKeyboardEvent> {
 	altKey: boolean;
 	/** @deprecated */
@@ -152,7 +148,7 @@ interface TransitionEvent$1<T = Element> extends NativeEvent<T, NativeTransition
 	propertyName: string;
 	pseudoElement: string;
 }
-export type EventHandler<T = Element, E = Event | NativeEvent<T>> = (event: E) => void;
+type EventHandler<T = Element, E = Event | NativeEvent<T>> = (event: E) => void;
 export type NativeEventHandler<T = Element> = EventHandler<T, NativeEvent<T>>;
 export type ClipboardEventHandler<T = Element> = EventHandler<T, ClipboardEvent$1<T>>;
 export type CompositionEventHandler<T = Element> = EventHandler<T, CompositionEvent$1<T>>;
