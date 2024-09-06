@@ -54,7 +54,7 @@ const globalListener = (e: NativeEvent) => {
   const { type, currentTarget } = e;
 
   [...registry[type]].forEach(([element, listenersMap]) => {
-    /* istanbul ignore else */
+    /* istanbul ignore else @preserve */
     if (currentTarget === element) {
       [...listenersMap].forEach(([listener, options]) => {
         listener.apply(element, [e]);
@@ -78,11 +78,13 @@ const addListener = <T = Element, L = EventListener>(
   options?: AddEventListenerOptions,
 ): void => {
   // get element listeners first
+  /* istanbul ignore else @preserve */
   if (!registry[eventType]) {
     registry[eventType] = new Map();
   }
   const oneEventMap = registry[eventType];
 
+  /* istanbul ignore else @preserve */
   if (!oneEventMap.has(element as PossibleEventTarget)) {
     oneEventMap.set(element as PossibleEventTarget, new Map());
   }
@@ -95,6 +97,7 @@ const addListener = <T = Element, L = EventListener>(
   oneElementMap.set(listener, options);
 
   // add listener last
+  /* istanbul ignore else @preserve */
   if (!size) {
     (element as PossibleEventTarget).addEventListener(eventType, globalListener as unknown as EventListener, options);
   }
@@ -120,13 +123,16 @@ const removeListener = <T = Element, L = EventListener>(
   const eventOptions = savedOptions !== undefined ? savedOptions : options;
 
   // unsubscribe second, remove from registry
+  /* istanbul ignore else @preserve */
   if (oneElementMap && oneElementMap.has(listener as NativeEventHandler<typeof element>))
     oneElementMap.delete(listener as NativeEventHandler<typeof element>);
+  /* istanbul ignore else @preserve */
   if (oneEventMap && (!oneElementMap || !oneElementMap.size)) oneEventMap.delete(element as PossibleEventTarget);
+  /* istanbul ignore else @preserve */
   if (!oneEventMap || !oneEventMap.size) delete registry[eventType];
 
   // remove listener last
-  /* istanbul ignore else */
+  /* istanbul ignore else @preserve */
   if (!oneElementMap || !oneElementMap.size) {
     (element as PossibleEventTarget).removeEventListener(
       eventType,

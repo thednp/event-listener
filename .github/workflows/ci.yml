@@ -19,13 +19,16 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Install Cypress
-        run: npx cypress install
+      - name: Install Playwright
+        run: pnpx playwright install
+
+      - name: Lint
+        run: pnpm lint
 
       - name: Build
-        run: pnpm build # includes lint
+        run: pnpm build
 
-      - name: Cypress Test
+      - name: Test
         run: pnpm test
 
       - name: Upload coverage report on Node 18 to coveralls.io...
