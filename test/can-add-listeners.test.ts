@@ -33,7 +33,7 @@ describe('Test Adding Listeners', () => {
     expect(Listener.registry.click).to.be.instanceOf(Map);
   });
 
-  it('can do `addListener` scroll', () => {
+  it('can do `addListener` scroll', async () => {
     let scrolled = false;
 
     Listener.on(win, 'scroll', function (e) {
@@ -45,7 +45,7 @@ describe('Test Adding Listeners', () => {
     win.scrollTo(0,1000);
     win.dispatchEvent(new Event('scroll'))
 
-    setTimeout(() => {
+    await vi.waitFor(() => {
       expect(scrolled).to.be.true;
       expect(doc.body.innerHTML).to.equal('<b>scroll</b>');
       expect(win.scrollY).to.not.equal(0);
