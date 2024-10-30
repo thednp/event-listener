@@ -19,11 +19,25 @@ A TypeScript sourced event listener for efficient applications based on the [sub
 - **EventListener** "should" be able to manage event options, especially `once`, meaning that when the option is `true`, the listener is automatically un-subscribed and detached from target;
 - **EventListener** will unsubscribe and detach listeners with the same options used when attached, which means you can "lazy" remove listeners on the fly.
 
+
 # Install
 
+```bash
+pnpm install -D @thednp/event-listener
 ```
-npm i @thednp/event-listener
+
+```bash
+yarn add -D @thednp/event-listener
 ```
+
+```bash
+npm install -D @thednp/event-listener
+```
+
+```bash
+deno install -D npm:@thednp/event-listener@latest
+```
+
 
 ## CDN
 
@@ -68,14 +82,14 @@ const documentClickListeners = Listener.registry['click'].get(document);
 
 // returns
 Map(1) {
-  Entries(Array) => [
+  Entries => [
     0: {
       key: handleMyClick() // listener
       value: false // listener options
     }
   ],
   size: 1, // size of the Map
-  prototype: [Prototype(Object)]
+  prototype: [Prototype(Map)]
 }
 
 // check if element has listener
@@ -101,7 +115,7 @@ const myListenerOptions = documentClickListeners && documentClickListeners.get(h
 
 You can also make use of the types for more consistent code:
 
-```js
+```ts
 import { on, FocusEventHandler } from '@thednp/event-listener';
 
 const handleMyFocus: FocusEventHandler<HTMLInputElement> = (e) => {
@@ -120,7 +134,7 @@ For more advanced use, check out the [demo](https://thednp.github.io/event-liste
 - unpack/unzip and open the folder with your editor;
 - open your terminal and navigate to the root of the unpacked folder;
 - run `npm install` or `npm update`, takes a few minutes to download the Electron browser;
-- run `npm run cypress` to open the Cypress console OR `npm run test` to run the tests in headless mode.
+- run `npm run test-ui` to open the browser mode testing OR `npm run test` to run the tests in headless mode.
 
 ## License
 
