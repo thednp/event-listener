@@ -1,42 +1,37 @@
-const e = {}, f = (t) => {
-  const { type: c, currentTarget: i } = t;
-  [...e[c]].forEach(([n, s]) => {
-    /* istanbul ignore else @preserve */
-    i === n && [...s].forEach(([o, a]) => {
-      o.apply(n, [t]), typeof a == "object" && a.once && r(n, c, o, a);
+const g = "2.0.7", e = {}, f = (t) => {
+  const { type: n, currentTarget: c } = t;
+  e[n].forEach((a, s) => {
+    c === s && a.forEach((o, i) => {
+      i.apply(s, [t]), typeof o == "object" && o.once && r(s, n, i, o);
     });
   });
-}, E = (t, c, i, n) => {
-  /* istanbul ignore else @preserve */
-  e[c] || (e[c] = /* @__PURE__ */ new Map());
-  const s = e[c];
-  /* istanbul ignore else @preserve */
+}, E = (t, n, c, a) => {
+  e[n] || (e[n] = /* @__PURE__ */ new Map());
+  const s = e[n];
   s.has(t) || s.set(t, /* @__PURE__ */ new Map());
-  const o = s.get(t), { size: a } = o;
-  o.set(i, n);
-  /* istanbul ignore else @preserve */
-  a || t.addEventListener(c, f, n);
-}, r = (t, c, i, n) => {
-  const s = e[c], o = s && s.get(t), a = o && o.get(i), d = a !== void 0 ? a : n;
-  /* istanbul ignore else @preserve */
-  o && o.has(i) && o.delete(i);
-  /* istanbul ignore else @preserve */
-  s && (!o || !o.size) && s.delete(t);
-  /* istanbul ignore else @preserve */
-  (!s || !s.size) && delete e[c];
-  /* istanbul ignore else @preserve */
-  (!o || !o.size) && t.removeEventListener(
-    c,
+  const o = s.get(
+    t
+  ), { size: i } = o;
+  o.set(c, a), i || t.addEventListener(
+    n,
+    f,
+    a
+  );
+}, r = (t, n, c, a) => {
+  const s = e[n], o = s && s.get(t), i = o && o.get(c), d = i !== void 0 ? i : a;
+  o && o.has(c) && o.delete(c), s && (!o || !o.size) && s.delete(t), (!s || !s.size) && delete e[n], (!o || !o.size) && t.removeEventListener(
+    n,
     f,
     d
   );
-}, g = E, M = r;
+}, M = E, p = r;
 export {
   E as addListener,
   f as globalListener,
-  M as off,
-  g as on,
+  p as off,
+  M as on,
   e as registry,
-  r as removeListener
+  r as removeListener,
+  g as version
 };
 //# sourceMappingURL=event-listener.mjs.map

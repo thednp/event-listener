@@ -3,8 +3,8 @@
  "compilerOptions": {
    "lib": ["DOM", "ESNext", "DOM.Iterable"],
   //  "types": ["vite", "vite/client"],
-   "rootDir": "./src",
-   "baseUrl": "./",
+   "rootDir": ".",
+   "baseUrl": ".",
    "module": "ESNext",
    "target": "ESNext",
    "moduleResolution": "Node",

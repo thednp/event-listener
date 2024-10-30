@@ -2,6 +2,11 @@ import { defineConfig } from "vitest/config";
 
 
 export default defineConfig({
+  optimizeDeps: {
+    include: [
+      "@vitest/coverage-istanbul"
+    ]
+  },
   test: {
     globals: true,
     coverage: {
