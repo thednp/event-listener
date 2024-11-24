@@ -23,19 +23,19 @@ A TypeScript sourced event listener for efficient applications based on the [sub
 # Install
 
 ```bash
-pnpm install -D @thednp/event-listener
+pnpm install @thednp/event-listener
 ```
 
 ```bash
-yarn add -D @thednp/event-listener
+yarn add @thednp/event-listener
 ```
 
 ```bash
-npm install -D @thednp/event-listener
+npm install @thednp/event-listener
 ```
 
 ```bash
-deno install -D npm:@thednp/event-listener@latest
+deno add npm:@thednp/event-listener@latest
 ```
 
 
