@@ -15,10 +15,14 @@ export default defineConfig({
       include: ["src/**/*.{ts,tsx}"],
     },
     browser: {
+      instances: [
+        {
+          browser: "chromium",
+        }
+      ],
       provider: 'playwright', // or 'webdriverio'
       enabled: true,
       headless: true,
-      name: 'chromium', // browser name is required
     },
   },
 });
