@@ -41,7 +41,7 @@ import {
   UIEventHandler,
   WheelEvent,
   WheelEventHandler,
-} from "./types";
+} from "./types.ts";
 
 const registry: EventsRegistry = {};
 

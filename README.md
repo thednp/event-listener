@@ -23,7 +23,7 @@ A TypeScript sourced event listener for efficient applications based on the [sub
 # Install
 
 ```bash
-pnpm install @thednp/event-listener
+pnpm add @thednp/event-listener
 ```
 
 ```bash
