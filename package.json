@@ -1,7 +1,7 @@
 {
   "name": "@thednp/event-listener",
   "author": "thednp",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "🚅 Modern event listener for efficient web applications based on subscribe-publish pattern.",
   "license": "MIT",
   "homepage": "https://thednp.github.io/event-listener",
@@ -41,8 +41,8 @@
     "pre-test": "pnpm clean-coverage",
     "badges": "npx -p dependency-version-badge update-badge typescript vitest vite",
     "prepublishOnly": "pnpm update --latest && pnpm format && pnpm build && pnpm badges",
-    "test": "pnpm pre-test && vitest --config vitest.config.mts",
-    "test-ui": "pnpm pre-test && vitest --config vitest.config-ui.mts --browser=chromium",
+    "test": "pnpm pre-test && vitest --browser.headless",
+    "test-ui": "pnpm pre-test && vitest --browser --ui",
     "clean-coverage": "rm -rf coverage .nyc_output",
     "format": "deno fmt src",
     "lint": "pnpm lint:ts && pnpm check:ts",
@@ -54,19 +54,23 @@
     "copy-docs": "cp dist/event-listener.js docs/event-listener.js && cp dist/event-listener.js.map docs/event-listener.js.map"
   },
   "devDependencies": {
-    "@vitest/browser": "^3.1.4",
-    "@vitest/coverage-istanbul": "^3.1.4",
-    "@vitest/ui": "^3.1.4",
-    "playwright": "^1.52.0",
-    "typescript": "5.8.3",
-    "vite": "^6.3.5",
+    "@vitest/browser": "^4.0.16",
+    "@vitest/browser-playwright": "^4.0.16",
+    "@vitest/coverage-istanbul": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
+    "playwright": "^1.57.0",
+    "typescript": "5.9.3",
+    "vite": "^7.3.0",
     "vite-plugin-dts": "^4.5.4",
-    "vite-plugin-strip-comments": "^0.0.5",
-    "vitest": "^3.1.4"
+    "vite-plugin-strip-comments": "^0.0.6",
+    "vitest": "^4.0.16"
   },
-  "packageManager": "pnpm@8.6.12",
+  "packageManager": "pnpm@10.26.2",
   "engines": {
     "node": ">=16",
     "pnpm": ">=8.6.0"
+  },
+  "dependencies": {
+    "@types/node": "^25.0.3"
   }
 }

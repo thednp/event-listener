@@ -52,13 +52,19 @@ interface BaseEvent<E = Event, C = unknown, T = unknown> {
  */
 type NativeEvent<T = Element, E = Event> = BaseEvent<E, T, T>;
 
-interface ClipboardEvent<T = Element>
-  extends NativeEvent<T, NativeClipboardEvent> {
+interface ClipboardEvent<T = Element> extends
+  NativeEvent<
+    T,
+    NativeClipboardEvent
+  > {
   clipboardData: DataTransfer;
 }
 
-interface CompositionEvent<T = Element>
-  extends NativeEvent<T, NativeCompositionEvent> {
+interface CompositionEvent<T = Element> extends
+  NativeEvent<
+    T,
+    NativeCompositionEvent
+  > {
   data: string;
 }
 
@@ -79,8 +85,11 @@ interface PointerEvent<T = Element> extends MouseEvent<T, NativePointerEvent> {
   isPrimary: boolean;
 }
 
-interface FocusEvent<T = Element, R = Element>
-  extends NativeEvent<T, NativeFocusEvent> {
+interface FocusEvent<T = Element, R = Element> extends
+  NativeEvent<
+    T,
+    NativeFocusEvent
+  > {
   relatedTarget: (EventTarget & R) | null;
   target: EventTarget & T;
 }
@@ -181,15 +190,21 @@ interface WheelEvent<T = Element> extends MouseEvent<T, NativeWheelEvent> {
   deltaZ: number;
 }
 
-interface AnimationEvent<T = Element>
-  extends NativeEvent<T, NativeAnimationEvent> {
+interface AnimationEvent<T = Element> extends
+  NativeEvent<
+    T,
+    NativeAnimationEvent
+  > {
   animationName: string;
   elapsedTime: number;
   pseudoElement: string;
 }
 
-interface TransitionEvent<T = Element>
-  extends NativeEvent<T, NativeTransitionEvent> {
+interface TransitionEvent<T = Element> extends
+  NativeEvent<
+    T,
+    NativeTransitionEvent
+  > {
   elapsedTime: number;
   propertyName: string;
   pseudoElement: string;
@@ -218,7 +233,9 @@ type UIEventHandler<T = Element> = EventHandler<T, UIEvent<T>>;
 type WheelEventHandler<T = Element> = EventHandler<T, WheelEvent<T>>;
 type AnimationEventHandler<T = Element> = EventHandler<T, AnimationEvent<T>>;
 type TransitionEventHandler<T = Element> = EventHandler<T, TransitionEvent<T>>;
-type PossibleEventTarget = EventTarget & (Element | Document | Window);
+type PossibleEventTarget =
+  & EventTarget
+  & (Element | Document | Window | MediaQueryList);
 type EventRegistryEntry<T = EventTarget, H = NativeEventHandler<T>> = Map<
   H,
   AddEventListenerOptions | undefined | boolean

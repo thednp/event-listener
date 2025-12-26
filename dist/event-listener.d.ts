@@ -206,7 +206,7 @@ export { PointerEvent_2 as PointerEvent }
 
 export declare type PointerEventHandler<T = Element> = EventHandler<T, PointerEvent_2<T>>;
 
-export declare type PossibleEventTarget = EventTarget & (Element | Document | Window);
+export declare type PossibleEventTarget = EventTarget & (Element | Document | Window | MediaQueryList);
 
 export declare const registry: EventsRegistry;
 

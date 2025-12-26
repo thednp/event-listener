@@ -1,4 +1,4 @@
-const g = "2.0.10", e = {}, f = (t) => {
+const g = "2.0.11", e = {}, f = (t) => {
   const { type: n, currentTarget: c } = t;
   e[n].forEach((a, s) => {
     c === s && a.forEach((o, i) => {
