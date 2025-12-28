@@ -41,9 +41,17 @@ deno add npm:@thednp/event-listener@latest
 
 ## CDN
 
+Versions starting with v2.0.12
+```html
+<script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/index.iife.js"></script>
+```
+
+Versions from first to 2.0.11
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/event-listener.js"></script>
 ```
+
+
 
 ## Use
 

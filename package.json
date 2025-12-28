@@ -1,19 +1,21 @@
 {
   "name": "@thednp/event-listener",
   "author": "thednp",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "🚅 Modern event listener for efficient web applications based on subscribe-publish pattern.",
   "license": "MIT",
   "homepage": "https://thednp.github.io/event-listener",
   "source": "./src/index.ts",
-  "main": "./dist/event-listener.js",
-  "module": "./dist/event-listener.mjs",
+  "browser": "./dist/index.iife.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
   "exports": {
     ".": {
-      "types": "./dist/event-listener.d.ts",
-      "require": "./dist/event-listener.cjs",
-      "import": "./dist/event-listener.mjs"
-    }
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
   },
   "repository": {
     "type": "git",
@@ -49,20 +51,19 @@
     "lint:ts": "deno lint src",
     "fix:ts": "deno lint src --fix",
     "check:ts": "tsc -noEmit",
-    "build": "pnpm build-vite && pnpm copy-docs",
-    "build-vite": "vite build",
-    "copy-docs": "cp dist/event-listener.js docs/event-listener.js && cp dist/event-listener.js.map docs/event-listener.js.map"
+    "build": "pnpm tsdown && pnpm copy-docs",
+    "copy-docs": "cp dist/index.iife.js docs/event-listener.js && cp dist/index.iife.js.map docs/event-listener.js.map"
   },
   "devDependencies": {
+    "@types/node": "^25.0.3",
     "@vitest/browser": "^4.0.16",
     "@vitest/browser-playwright": "^4.0.16",
     "@vitest/coverage-istanbul": "^4.0.16",
     "@vitest/ui": "^4.0.16",
-    "@types/node": "^25.0.3",
     "playwright": "^1.57.0",
+    "tsdown": "^0.18.3",
     "typescript": "5.9.3",
     "vite": "^7.3.0",
-    "vite-plugin-dts": "^4.5.4",
     "vite-plugin-strip-comments": "^0.0.6",
     "vitest": "^4.0.16"
   },

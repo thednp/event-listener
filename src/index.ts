@@ -46,7 +46,7 @@ import {
 const registry: EventsRegistry = {};
 
 /**
- * The global event listener. This function must be a Function.
+ * The global event listener.
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
  */
@@ -71,7 +71,7 @@ const globalListener = (e: NativeEvent) => {
  * Register a new listener with its options and attach the `globalListener`
  * to the target if this is the first listener.
  */
-const addListener = <T = Element, L = EventListener>(
+const addListener = <T extends PossibleEventTarget, L = EventListener>(
   element: T,
   eventType: string,
   listener: L,
@@ -85,12 +85,10 @@ const addListener = <T = Element, L = EventListener>(
   const oneEventMap = registry[eventType];
 
   /* istanbul ignore else @preserve */
-  if (!oneEventMap.has(element as PossibleEventTarget)) {
-    oneEventMap.set(element as PossibleEventTarget, new Map());
+  if (!oneEventMap.has(element)) {
+    oneEventMap.set(element, new Map());
   }
-  const oneElementMap = oneEventMap.get(
-    element as PossibleEventTarget,
-  ) as EventRegistryEntry<T, L>;
+  const oneElementMap = oneEventMap.get(element) as EventRegistryEntry<T, L>;
 
   // get listeners size
   const { size } = oneElementMap;
@@ -101,7 +99,7 @@ const addListener = <T = Element, L = EventListener>(
   // add listener last
   /* istanbul ignore else @preserve */
   if (!size) {
-    (element as PossibleEventTarget).addEventListener(
+    element.addEventListener(
       eventType,
       globalListener as unknown as EventListener,
       options,
@@ -113,7 +111,7 @@ const addListener = <T = Element, L = EventListener>(
  * Remove a listener from registry and detach the `globalListener`
  * if no listeners are found in the registry.
  */
-const removeListener = <T = Element, L = EventListener>(
+const removeListener = <T extends PossibleEventTarget, L = EventListener>(
   element: T,
   eventType: string,
   listener: L,
@@ -122,7 +120,7 @@ const removeListener = <T = Element, L = EventListener>(
   // get listener first
   const oneEventMap = registry[eventType];
   const oneElementMap = oneEventMap &&
-    (oneEventMap.get(element as PossibleEventTarget) as EventRegistryEntry<T>);
+    (oneEventMap.get(element) as EventRegistryEntry<T>);
   const savedOptions = oneElementMap &&
     oneElementMap.get(listener as NativeEventHandler<typeof element>);
 
@@ -139,7 +137,7 @@ const removeListener = <T = Element, L = EventListener>(
   }
   /* istanbul ignore else @preserve */
   if (oneEventMap && (!oneElementMap || !oneElementMap.size)) {
-    oneEventMap.delete(element as PossibleEventTarget);
+    oneEventMap.delete(element);
   }
   /* istanbul ignore else @preserve */
   if (!oneEventMap || !oneEventMap.size) delete registry[eventType];
@@ -147,7 +145,7 @@ const removeListener = <T = Element, L = EventListener>(
   // remove listener last
   /* istanbul ignore else @preserve */
   if (!oneElementMap || !oneElementMap.size) {
-    (element as PossibleEventTarget).removeEventListener(
+    element.removeEventListener(
       eventType,
       globalListener as unknown as EventListener,
       eventOptions,
