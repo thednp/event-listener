@@ -43,6 +43,11 @@ Versions starting with v2.0.13
 <script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/index.umd.js"></script>
 ```
 
+Version v2.0.12
+```html
+<script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/index.iife.js"></script>
+```
+
 Versions up to 2.0.11
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/event-listener.js"></script>
