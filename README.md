@@ -38,9 +38,9 @@ deno add npm:@thednp/event-listener@latest
 
 ## CDN
 
-Versions starting with v2.0.12
+Versions starting with v2.0.13
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/index.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@thednp/event-listener/dist/index.umd.js"></script>
 ```
 
 Versions up to 2.0.11
