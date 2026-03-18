@@ -1,5 +1,11 @@
-//#region package.d.ts
+/*!
+* @thednp/event-listener ESM v2.0.13 (https://thednp.github.io/event-listener)
+* Copyright 2026 © thednp
+* Licensed under MIT (https://github.com/thednp/event-listener/blob/main/LICENSE)
+*/
+"use strict";
 
+//#region package.json.d.ts
 declare let version: string;
 //#endregion
 //#region src/types.d.ts

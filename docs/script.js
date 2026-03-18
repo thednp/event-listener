@@ -1,6 +1,6 @@
 const [btn] = document.getElementsByTagName('button');
 
-Listener.on(
+EventListener.on(
   btn,
   'click',
   function removeFirstComponent(e) {
@@ -13,7 +13,7 @@ Listener.on(
     btn.innerText = compMap.size ? compMap.size + ' Instances' : 'No Instance';
 
     if (!compMap.size) {
-      Listener.off(btn, 'click', removeFirstComponent, false);
+      EventListener.off(btn, 'click', removeFirstComponent, false);
     }
   },
   false,
@@ -24,4 +24,4 @@ function initDemo() {
 }
 
 if (document.body) initDemo();
-else Listener.on('DOMContentLoaded', initDemo, { once: true });
+else EventListener.on('DOMContentLoaded', initDemo, { once: true });

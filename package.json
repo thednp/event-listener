@@ -1,20 +1,16 @@
 {
   "name": "@thednp/event-listener",
   "author": "thednp",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "description": "🚅 Modern event listener for efficient web applications based on subscribe-publish pattern.",
   "license": "MIT",
   "homepage": "https://thednp.github.io/event-listener",
   "source": "./src/index.ts",
-  "browser": "./dist/index.iife.js",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "browser": "./dist/index.umd.js",
   "types": "./dist/index.d.cts",
+  "type": "module",
   "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
-    },
+    ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
   "repository": {
@@ -24,6 +20,12 @@
   "bugs": {
     "url": "https://github.com/thednp/event-listener/issues"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
   "keywords": [
     "addEventListener",
     "removeEventListener",
@@ -42,7 +44,7 @@
     "dev": "vite --open ./docs/index-dev.html --port 8577",
     "pre-test": "pnpm clean-coverage",
     "badges": "npx -p dependency-version-badge update-badge typescript vitest vite",
-    "prepublishOnly": "pnpm update --latest && pnpm format && pnpm lint && pnpm build && pnpm badges",
+    "prepublishOnly": "pnpm update --latest && pnpm format && pnpm lint && pnpm build",
     "test": "pnpm pre-test && vitest --browser.headless",
     "test-ui": "pnpm pre-test && vitest --browser --ui",
     "clean-coverage": "rm -rf coverage .nyc_output",
@@ -52,20 +54,20 @@
     "fix:ts": "deno lint src --fix",
     "check:ts": "tsc -noEmit",
     "build": "pnpm tsdown && pnpm copy-docs",
-    "copy-docs": "cp dist/index.iife.js docs/event-listener.js && cp dist/index.iife.js.map docs/event-listener.js.map"
+    "copy-docs": "cp dist/index.umd.js docs/index.umd.js && cp dist/index.umd.js.map docs/index.umd.js.map"
   },
   "devDependencies": {
-    "@types/node": "^25.0.3",
-    "@vitest/browser": "^4.0.16",
-    "@vitest/browser-playwright": "^4.0.16",
-    "@vitest/coverage-istanbul": "^4.0.16",
-    "@vitest/ui": "^4.0.16",
-    "playwright": "^1.57.0",
-    "tsdown": "^0.18.3",
+    "@types/node": "^25.5.0",
+    "@vitest/browser": "^4.1.0",
+    "@vitest/browser-playwright": "^4.1.0",
+    "@vitest/coverage-istanbul": "^4.1.0",
+    "@vitest/ui": "^4.1.0",
+    "playwright": "^1.58.2",
+    "tsdown": "^0.21.4",
     "typescript": "5.9.3",
-    "vite": "^7.3.0",
-    "vite-plugin-strip-comments": "^0.0.6",
-    "vitest": "^4.0.16"
+    "vite": "^8.0.0",
+    "vite-plugin-strip-comments": "^0.0.9",
+    "vitest": "^4.1.0"
   },
   "packageManager": "pnpm@10.26.2",
   "engines": {

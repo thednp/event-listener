@@ -48,14 +48,14 @@ class DemoComponent {
       this.constructor.name + ' div#' + this.id + ',\ntriggered: "' + type + '",\nscrollY: ' + window.scrollY;
   }
   _addListeners() {
-    Listener.on(document, 'click', this.handleClick, { once: true });
-    Listener.on(window, 'resize', this.handleResize, { passive: true });
-    Listener.on(window, 'scroll', this.handleScroll, { passive: true });
+    EventListener.on(document, 'click', this.handleClick, { once: true });
+    EventListener.on(window, 'resize', this.handleResize, { passive: true });
+    EventListener.on(window, 'scroll', this.handleScroll, { passive: true });
   }
   _removeListeners() {
-    Listener.off(document, 'click', this.handleClick);
-    Listener.off(window, 'resize', this.handleResize);
-    Listener.off(window, 'scroll', this.handleScroll);
+    EventListener.off(document, 'click', this.handleClick);
+    EventListener.off(window, 'resize', this.handleResize);
+    EventListener.off(window, 'scroll', this.handleScroll);
   }
   dispose() {
     this._removeListeners();
