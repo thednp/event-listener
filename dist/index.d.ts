@@ -1,5 +1,5 @@
 /*!
-* @thednp/event-listener ESM v2.0.13 (https://thednp.github.io/event-listener)
+* @thednp/event-listener ESM v2.0.14 (https://thednp.github.io/event-listener)
 * Copyright 2026 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener/blob/main/LICENSE)
 */
@@ -205,4 +205,4 @@ declare const on: typeof addListener;
 declare const off: typeof removeListener;
 //#endregion
 export { type AnimationEvent, type AnimationEventHandler, type ChangeEvent, type ChangeEventHandler, type ClipboardEvent, type ClipboardEventHandler, type CompositionEvent, type CompositionEventHandler, type DragEvent, type DragEventHandler, type EventRegistryEntry, type EventsRegistry, type FocusEvent, type FocusEventHandler, type FormEvent, type FormEventHandler, type KeyboardEvent, type KeyboardEventHandler, type MouseEvent, type MouseEventHandler, type NativeEvent, type NativeEventHandler, type PointerEvent, type PointerEventHandler, type PossibleEventTarget, type TouchEvent, type TouchEventHandler, type TransitionEvent, type TransitionEventHandler, type UIEvent, type UIEventHandler, type WheelEvent, type WheelEventHandler, addListener, globalListener, off, on, registry, removeListener, version };
-//# sourceMappingURL=index.d.mts.map
+//# sourceMappingURL=index.d.ts.map
