@@ -3,9 +3,8 @@
 * Copyright 2026 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener/blob/main/LICENSE)
 */
-"use strict";
 
-import "./chunk-CoZCR0Zu.js";
+import "./chunk-ByVQi9P_.js";
 //#region package.json
 var version = "2.0.14";
 //#endregion

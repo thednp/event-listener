@@ -3,7 +3,6 @@
 * Copyright 2026 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener/blob/main/LICENSE)
 */
-"use strict";
 
 //#region package.json.d.ts
 declare let version: string;
