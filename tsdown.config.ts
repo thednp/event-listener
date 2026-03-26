@@ -9,11 +9,9 @@ const banner = `/*!
 * @thednp/event-listener $package v${pkg.version} (${pkg.homepage})
 * Copyright ${year} © ${pkg.author}
 * Licensed under MIT (https://github.com/thednp/event-listener/blob/main/LICENSE)
-*/
-`;
+*/`;
 const miniBanner =
-  `/*! @thednp/event-listener $package v${pkg.version} | ${pkg.author} © ${year} | ${pkg.license}-License */
-`;
+  `/*! @thednp/event-listener $package v${pkg.version} | ${pkg.author} © ${year} | ${pkg.license}-License */`;
 
 export default defineConfig([
   { // ES

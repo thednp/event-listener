@@ -17,7 +17,7 @@ type NativeUIEvent = UIEvent;
 type NativeWheelEvent = WheelEvent;
 
 interface AbstractView {
-  styleMedia: StyleMedia;
+  // styleMedia: StyleMedia;
   document: Document;
 }
 

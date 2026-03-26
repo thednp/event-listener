@@ -1,9 +1,8 @@
 /*!
-* @thednp/event-listener ESM v2.0.14 (https://thednp.github.io/event-listener)
+* @thednp/event-listener ESM v2.0.15 (https://thednp.github.io/event-listener)
 * Copyright 2026 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener/blob/main/LICENSE)
 */
-
 //#region package.json.d.ts
 declare let version: string;
 //#endregion
@@ -25,7 +24,6 @@ type NativeTransitionEvent = TransitionEvent;
 type NativeUIEvent = UIEvent;
 type NativeWheelEvent = WheelEvent;
 interface AbstractView {
-  styleMedia: StyleMedia;
   document: Document;
 }
 interface BaseEvent<E = Event, C = unknown, T = unknown> {

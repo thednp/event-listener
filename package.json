@@ -1,7 +1,7 @@
 {
   "name": "@thednp/event-listener",
   "author": "thednp",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "description": "🚅 Modern event listener for efficient web applications based on subscribe-publish pattern.",
   "license": "MIT",
   "homepage": "https://thednp.github.io/event-listener",
@@ -43,7 +43,6 @@
   "scripts": {
     "dev": "vite --open ./docs/index-dev.html --port 8577",
     "pre-test": "pnpm clean-coverage",
-    "badges": "npx -p dependency-version-badge update-badge typescript vitest vite",
     "prepublishOnly": "pnpm update --latest && pnpm format && pnpm lint && pnpm build",
     "test": "pnpm pre-test && vitest --browser.headless",
     "test-ui": "pnpm pre-test && vitest --browser --ui",
@@ -58,16 +57,16 @@
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
-    "@vitest/browser": "^4.1.0",
-    "@vitest/browser-playwright": "^4.1.0",
-    "@vitest/coverage-istanbul": "^4.1.0",
-    "@vitest/ui": "^4.1.0",
+    "@vitest/browser": "^4.1.1",
+    "@vitest/browser-playwright": "^4.1.1",
+    "@vitest/coverage-istanbul": "^4.1.1",
+    "@vitest/ui": "^4.1.1",
     "playwright": "^1.58.2",
-    "tsdown": "^0.21.4",
-    "typescript": "5.9.3",
-    "vite": "^8.0.1",
-    "vite-plugin-strip-comments": "^0.0.9",
-    "vitest": "^4.1.0"
+    "tsdown": "^0.21.5",
+    "typescript": "6.0.2",
+    "vite": "^8.0.3",
+    "vite-plugin-strip-comments": "^0.0.10",
+    "vitest": "^4.1.1"
   },
   "packageManager": "pnpm@10.26.2",
   "engines": {

@@ -1,12 +1,10 @@
 /*!
-* @thednp/event-listener ESM v2.0.14 (https://thednp.github.io/event-listener)
+* @thednp/event-listener ESM v2.0.15 (https://thednp.github.io/event-listener)
 * Copyright 2026 © thednp
 * Licensed under MIT (https://github.com/thednp/event-listener/blob/main/LICENSE)
 */
-
-import "./chunk-ByVQi9P_.js";
 //#region package.json
-var version = "2.0.14";
+var version = "2.0.15";
 //#endregion
 //#region src/index.ts
 /**
